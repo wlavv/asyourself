@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>As-Yourself — Simple, effective skincare</title>
-  <meta name="description" content="Clean, effective skincare with a soft glow. Gentle formulas, transparent routines, results you can feel." />
+  <meta name="description" content="Clean, effective skincare with a soft glow. Gentle formulas, transparent routines, results you can feel. In development — early access soon." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="As-Yourself — Simple, effective skincare" />
-  <meta property="og:description" content="Clean, effective skincare with a soft glow. Gentle formulas, transparent routines, results you can feel." />
+  <meta property="og:description" content="Clean, effective skincare with a soft glow. Gentle formulas, transparent routines, results you can feel. In development — early access soon." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="As-Yourself" />
   <meta property="og:image" content="https://www.as-yourself.com/img/as-yourself-og-1200x630.jpg" />
@@ -19,7 +19,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="As-Yourself — Simple, effective skincare" />
-  <meta name="twitter:description" content="Clean, effective skincare with a soft glow." />
+  <meta name="twitter:description" content="Clean, effective skincare with a soft glow. In development — early access soon." />
   <meta name="twitter:image" content="https://www.as-yourself.com/img/as-yourself-og-1200x628.jpg" />
 
   <link rel="canonical" href="https://www.as-yourself.com/" />
@@ -37,18 +37,18 @@
       /* Beauty/pastel palette */
       --ink:#1b1622;
       --muted:#6f6a7e;
-      --canvas:#f9f6f4;
-      --champagne:#f5ede6;
+      --canvas:#f7f3ef;
+      --paper:#ffffff;
 
       --accent-grad: linear-gradient(135deg, #ffbfe4 0%, #cbbdff 50%, #ffd6b3 100%);
-      --accent-soft: linear-gradient(180deg, rgba(255,191,228,.55), rgba(203,189,255,.55) 60%, rgba(255,214,179,.55));
+      --veil-grad: radial-gradient(1100px 480px at 85% -10%, rgba(255,216,234,.65), transparent 60%),
+                   radial-gradient(900px 420px at 10% 20%, rgba(217,208,255,.55), transparent 60%),
+                   radial-gradient(900px 420px at 90% 70%, rgba(255,217,196,.45), transparent 60%);
 
       --radius-lg: 28px;
       --shadow-sm: 0 8px 24px rgba(44,20,70,.10);
       --shadow-md: 0 16px 48px rgba(44,20,70,.12);
-
       --hairline: rgba(0,0,0,.08);
-      --hairline-soft: rgba(0,0,0,.05);
     }
 
     /* ================= Base ================= */
@@ -58,7 +58,7 @@
       margin:0;
       font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       color:var(--ink);
-      background: var(--champagne);
+      background: var(--canvas);
       overflow-x:hidden;
     }
     .container{width:min(1100px,92vw);margin-inline:auto}
@@ -68,23 +68,32 @@
     h2{font-size:clamp(1.4rem,2.6vw,2rem);margin:0 0 .8rem}
     p{margin:.5rem 0 0; color:var(--muted); font-size:1.05rem}
 
-    .sep{height:1px;background:linear-gradient(90deg, transparent, var(--hairline), transparent)}
-
-    /* ================= Sculpted background layer (animated drift) ================= */
-    .page{
-      position:relative; isolation:isolate;
+    /* ================= Site header (brand + dev ribbon) ================= */
+    .site-head{padding:18px 0 6px; position:relative}
+    .brand-row{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:28px;height:28px;border-radius:9px;
+      background: var(--accent-grad);
+      box-shadow: 0 0 1px rgba(0,0,0,.15), 0 10px 24px rgba(203,189,255,.35);
     }
+    .brand{font-weight:900}
+    .dev-ribbon{
+      display:inline-flex; align-items:center; gap:.5rem;
+      padding:.35rem .65rem; border-radius:999px; margin-top:10px;
+      background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.6));
+      border:1px solid rgba(0,0,0,.05);
+      font-weight:800; color:#3a2f47;
+    }
+
+    /* ================= Sculpted background veil (integrated & animated) ================= */
+    .page{position:relative; isolation:isolate;}
     .page::before{
       content:"";
-      position:fixed; inset:-10% -10% auto -10%; top:-5vh; height:85vh; z-index:-2;
-      background:
-        radial-gradient(1100px 480px at 85% -10%, rgba(255,216,234,.65), transparent 60%),
-        radial-gradient(900px 420px at 10% 20%, rgba(217,208,255,.55), transparent 60%),
-        radial-gradient(900px 420px at 90% 70%, rgba(255,217,196,.45), transparent 60%);
+      position:fixed; inset:-10% -10% auto -10%; top:-6vh; height:82vh; z-index:-2;
+      background: var(--veil-grad);
       filter: blur(50px);
       opacity:.9;
       animation: drift 22s ease-in-out infinite alternate;
-      transform: translate3d(0,0,0);
       will-change: transform;
       mask: radial-gradient(120% 100% at 50% 0%, #000 60%, transparent 61%);
     }
@@ -93,26 +102,14 @@
       to  { transform: translate3d(0,-2vh,0) scale(1.03);}
     }
 
-    /* ================= Header minimal ================= */
-    .site-head{padding:22px 0 8px}
-    .brand-row{display:flex;align-items:center;gap:12px}
-    .logo{
-      width:28px;height:28px;border-radius:9px;
-      background: var(--accent-grad);
-      box-shadow: 0 0 1px rgba(0,0,0,.15), 0 10px 24px rgba(203,189,255,.35);
-    }
-    .brand{font-weight:900}
-
-    /* ================= HERO ================= */
-    .hero{padding:38px 0 24px; position:relative}
+    /* ================= HERO (no cards; text + integrated ribbons) ================= */
+    .hero{padding:42px 0 28px; position:relative}
     .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center}
-
     .eyebrow{
       display:inline-flex; gap:.5rem; align-items:center;
       padding:.42rem .7rem; border-radius:999px;
-      background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.6));
+      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.7));
       border:1px solid rgba(0,0,0,.05);
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.4);
       font-weight:800; color:#3a2f47;
     }
     .lead{max-width:62ch}
@@ -123,7 +120,6 @@
       padding:1rem 1.2rem; min-height:46px; border-radius:14px; text-decoration:none;
       font-weight:900; letter-spacing:.2px; transition:transform .18s ease, filter .18s ease;
       box-shadow: 0 12px 34px rgba(203,189,255,.25);
-      will-change: transform, filter;
     }
     .btn.primary{color:#1b1622;background-image:var(--accent-grad); border:0}
     .btn.primary:hover{transform:translateY(-1px); filter:saturate(1.04) brightness(1.02)}
@@ -134,58 +130,37 @@
     }
     .btn.ghost:hover{transform:translateY(-1px)}
 
-    /* ======= Abstract “pearl” with glow (replaces bottle) ======= */
-    .hero-art{position:relative; min-height:520px}
-    .pearl{
-      --mx: 0px; --my: 0px;
-      position:absolute; right:8%; top:0;
-      width:min(440px,44vw); aspect-ratio:1/1; border-radius:50%;
-      background:
-        radial-gradient(closest-side, rgba(255,255,255,1) 0%, rgba(255,255,255,.8) 60%, rgba(255,255,255,0) 70%),
-        radial-gradient(60% 60% at 35% 35%, rgba(255,191,228,.6), transparent 60%),
-        radial-gradient(55% 55% at 70% 30%, rgba(203,189,255,.55), transparent 60%),
-        radial-gradient(50% 50% at 50% 70%, rgba(255,214,179,.5), transparent 60%);
-      border:1px solid rgba(255,255,255,.9);
-      box-shadow:
-        0 30px 90px rgba(74,39,109,.18),
-        inset 0 0 0 1px rgba(255,255,255,.7);
-      transform: translate3d(var(--mx), var(--my), 0);
-      animation: float 10s ease-in-out infinite;
-      will-change: transform;
-      overflow:hidden;
+    /* Subtle decorative ribbons on the right (integrated, not separate object) */
+    .ribbons{
+      position:relative; min-height:500px;
     }
-    @keyframes float {
-      0%   { transform: translate3d(var(--mx), calc(var(--my) + 0px), 0) }
-      50%  { transform: translate3d(var(--mx), calc(var(--my) - 10px), 0) }
-      100% { transform: translate3d(var(--mx), calc(var(--my) + 0px), 0) }
-    }
-    /* specular sheen sweeping slowly */
-    .pearl::after{
-      content:"";
-      position:absolute; inset:-20% -20%;
-      background: conic-gradient(from 0deg, rgba(255,255,255,.0) 0 20%, rgba(255,255,255,.65) 25%, rgba(255,255,255,.0) 35% 100%);
+    .ribbons::before,
+    .ribbons::after{
+      content:""; position:absolute; inset:0;
+      background: conic-gradient(from 210deg, rgba(255,191,228,.5), rgba(203,189,255,.5), rgba(255,214,179,.45), transparent 70%);
+      filter: blur(22px); opacity:.9; border-radius:60px;
+      transform: rotate(-6deg);
+      animation: breathe 14s ease-in-out infinite;
       mix-blend-mode: screen;
-      animation: sweep 9s linear infinite;
-      pointer-events:none;
     }
-    @keyframes sweep{
-      to { transform: rotate(1turn); }
+    .ribbons::after{
+      inset:10% 0 0 10%;
+      filter: blur(30px); opacity:.6; transform: rotate(6deg);
+      animation-duration: 18s;
     }
-    /* soft halo under pearl */
-    .halo{
-      position:absolute; inset:auto 0 5% 0; height:180px;
-      background: radial-gradient(closest-side, rgba(255,255,255,.95), rgba(255,255,255,0));
-      filter: blur(14px); opacity:.9;
+    @keyframes breathe{
+      0%,100%{ transform: translateY(0) rotate(var(--angle, -6deg)); }
+      50%    { transform: translateY(-8px) rotate(var(--angle, -6deg)); }
     }
 
-    /* ================= Sections (no cards) ================= */
+    .sep{height:1px;background:linear-gradient(90deg, transparent, var(--hairline), transparent)}
+
+    /* ================= WHY (text-only list with reveal) ================= */
     section{padding:64px 0}
-
-    /* Why list */
     .why-list{display:grid; gap:14px; margin-top:10px}
     .why-item{
       display:grid; grid-template-columns:28px 1fr; align-items:start; gap:10px;
-      padding: 10px 0; border-bottom: 1px dashed var(--hairline-soft);
+      padding: 10px 0; border-bottom: 1px dashed rgba(0,0,0,.06);
       opacity:0; transform: translateY(10px); transition: 600ms ease;
     }
     .why-item.reveal-in{opacity:1; transform:none}
@@ -196,11 +171,11 @@
       font-weight:900;
     }
 
-    /* Ingredient chips */
+    /* ================= INGREDIENT CHIPS ================= */
     .chips{display:flex;flex-wrap:wrap;gap:10px}
     .chip{
       padding:.55rem .8rem; border-radius:999px;
-      background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.6));
+      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.7));
       border:1px solid rgba(0,0,0,.06);
       box-shadow: 0 6px 18px rgba(203,189,255,.18);
       font-weight:700; color:#2a2235;
@@ -209,11 +184,11 @@
     .chip.reveal-in{opacity:1; transform:none}
     .chip:hover{transform: translateY(-1px)}
 
-    /* Routine steps */
+    /* ================= ROUTINE (timeline minimal) ================= */
     .steps{display:grid;gap:14px;margin-top:8px;position:relative}
     .steps::before{
       content:""; position:absolute; left:14px; top:10px; bottom:10px; width:2px;
-      background:linear-gradient(180deg, var(--hairline), transparent);
+      background:linear-gradient(180deg, rgba(0,0,0,.1), transparent);
       border-radius:2px;
     }
     .step{
@@ -231,49 +206,90 @@
     }
     .step h3{margin:0 0 .15rem; font-size:1.05rem}
 
-    /* Our Stores minimal */
-    .brand-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
-    .brand-link{display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;opacity:0;transform:translateY(10px);transition:600ms ease}
-    .brand-link.reveal-in{opacity:1;transform:none}
-    .brand-logo{
-      width:72px;height:72px;border-radius:18px; overflow:hidden;
-      background:linear-gradient(180deg, #fff, rgba(255,255,255,.7));
-      border:1px solid rgba(0,0,0,.05);
-      box-shadow: var(--shadow-sm);
-      display:grid;place-items:center;
+    /* ================= OUR STORES — featured rail (highlighted) ================= */
+    .stores{
+      padding:80px 0;
+      position:relative;
     }
-    .brand-logo img{width:100%;height:100%;object-fit:contain}
+    .stores .bg{
+      position:absolute; inset:0; z-index:-1;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.6)),
+        var(--veil-grad);
+      filter: blur(30px) saturate(1.02);
+      opacity:.85;
+      mask: linear-gradient(180deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+      animation: drift 26s ease-in-out infinite alternate;
+    }
+    .stores .head{
+      display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:14px;
+    }
+    .stores .sub{color:var(--muted)}
+    .rail{
+      display:flex; gap:14px; overflow:auto; padding:6px 2px 8px; scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling: touch;
+      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    }
+    .pill{
+      scroll-snap-align:center;
+      display:grid; grid-template-columns:82px 1fr; align-items:center; gap:12px;
+      min-width:min(460px, 92vw);
+      padding:12px 14px; border-radius:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7));
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow: 0 14px 36px rgba(203,189,255,.25);
+      position:relative; overflow:hidden;
+    }
+    .pill::after{
+      content:""; position:absolute; inset:-40% -60% auto -60%; height:200%;
+      background: conic-gradient(from 0deg, rgba(255,255,255,.0) 0 20%, rgba(255,255,255,.5) 25%, rgba(255,255,255,.0) 35% 100%);
+      mix-blend-mode: screen; animation: sweep 9s linear infinite;
+      pointer-events:none;
+    }
+    @keyframes sweep{ to{ transform: rotate(1turn); } }
+    .logo-box{
+      width:82px; height:82px; border-radius:16px; overflow:hidden;
+      background:linear-gradient(180deg, #fff, rgba(255,255,255,.7));
+      border:1px solid rgba(0,0,0,.06);
+      display:grid; place-items:center;
+    }
+    .logo-box img{width:100%;height:100%;object-fit:contain}
+    .pill h3{margin:0; font-size:1.05rem}
+    .pill p{margin:.15rem 0 0}
+    .pill:hover{transform:translateY(-1px); transition: transform .18s ease}
 
     /* Footer */
     footer{padding:28px 0 36px}
     .foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
-    .foot .brand-row .logo{width:24px;height:24px;border-radius:7px}
+    .foot .logo{width:24px;height:24px;border-radius:7px}
 
     /* ================= Responsive ================= */
     @media (max-width:980px){
       .hero-grid{grid-template-columns:1fr}
-      .hero-art{min-height:420px}
-      .pearl{right:auto;left:50%;transform:translate3d(-50%,0,0)}
-      .brand-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .ribbons{min-height:380px}
     }
     @media (max-width:560px){
-      .brand-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .pill{grid-template-columns:72px 1fr; min-width:88%}
+      .logo-box{width:72px;height:72px}
     }
 
     /* Motion preferences */
     @media (prefers-reduced-motion: reduce){
-      .btn, .why-item, .step, .chip, .brand-link {transition:none}
-      .page::before, .pearl, .pearl::after {animation:none}
+      .btn, .why-item, .step, .chip, .pill {transition:none}
+      .page::before, .stores .bg, .ribbons::before, .ribbons::after {animation:none}
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- Header minimal -->
+    <!-- Header + Dev ribbon -->
     <header class="site-head">
-      <div class="container brand-row">
-        <span class="logo" aria-hidden="true"></span>
-        <strong class="brand">As-Yourself</strong>
+      <div class="container">
+        <div class="brand-row">
+          <span class="logo" aria-hidden="true"></span>
+          <strong class="brand">As-Yourself</strong>
+        </div>
+        <div class="dev-ribbon">🚧 In development • Early access soon</div>
       </div>
     </header>
 
@@ -283,17 +299,15 @@
         <div>
           <span class="eyebrow">✨ Clean • Conscious • Glow</span>
           <h1>Skincare that feels gentle, looks radiant, and fits your life.</h1>
-          <p class="lead">Formulas designed to calm, hydrate and protect. Build a routine that delivers real results — with ingredients you can trust and a soft-focus finish that glows.</p>
+          <p class="lead">Formulas designed to calm, hydrate and protect. Build a routine that delivers real results — with ingredients you can trust and a soft-focus finish.</p>
           <div class="cta-row">
             <a class="btn primary" href="#why">Discover more</a>
-            <a class="btn ghost" href="#routine">Build your routine</a>
+            <a class="btn ghost" href="#stores">Explore our stores</a>
           </div>
         </div>
 
-        <div class="hero-art" aria-hidden="true">
-          <div class="pearl"></div>
-          <div class="halo"></div>
-        </div>
+        <!-- integrated ribbons instead of a standalone object -->
+        <div class="ribbons" aria-hidden="true"></div>
       </div>
     </section>
 
@@ -338,34 +352,64 @@
       </div>
     </section>
 
-    <!-- OUR STORES -->
-    <section id="group">
+    <!-- OUR STORES — highlighted rail -->
+    <section id="stores" class="stores">
+      <div class="bg" aria-hidden="true"></div>
       <div class="container">
-        <h2>Our Stores</h2>
-        <div class="brand-grid">
-          <a class="brand-link reveal" href="https://life-style.pt" target="_blank" rel="noopener">
-            <span class="brand-logo"><img src="https://www.tcg-collectors.com/img/logos/3b.webp" width="200" height="200" alt="Life-Style"></span>
-            <span>Life-Style</span>
+        <div class="head">
+          <div>
+            <h2>Our Stores</h2>
+            <p class="sub">Explore our group — skincare, lifestyle, tech and more.</p>
+          </div>
+        </div>
+
+        <div class="rail" role="list">
+          <a class="pill reveal" href="https://life-style.pt" target="_blank" rel="noopener" role="listitem" aria-label="Life-Style">
+            <span class="logo-box"><img src="https://www.tcg-collectors.com/img/logos/3b.webp" width="200" height="200" alt="Life-Style logo"></span>
+            <span>
+              <h3>Life-Style</h3>
+              <p>Premium picks for home & wellness.</p>
+            </span>
           </a>
-          <a class="brand-link reveal" href="https://www.tcg-collectors.com" target="_blank" rel="noopener">
-            <span class="brand-logo"><img src="https://www.tcg-collectors.com/img/logos/4w.webp" width="200" height="200" alt="TCG-Collectors"></span>
-            <span>TCG-Collectors</span>
+
+          <a class="pill reveal" href="https://www.tcg-collectors.com" target="_blank" rel="noopener" role="listitem" aria-label="TCG-Collectors">
+            <span class="logo-box"><img src="https://www.tcg-collectors.com/img/logos/4w.webp" width="200" height="200" alt="TCG-Collectors logo"></span>
+            <span>
+              <h3>TCG-Collectors</h3>
+              <p>For TCG collectors.</p>
+            </span>
           </a>
-          <a class="brand-link reveal" href="https://2play4fun.com" target="_blank" rel="noopener">
-            <span class="brand-logo"><img src="https://www.tcg-collectors.com/img/logos/7w.webp" width="200" height="200" alt="2Play4Fun"></span>
-            <span>2Play4Fun</span>
+
+          <a class="pill reveal" href="https://2play4fun.com" target="_blank" rel="noopener" role="listitem" aria-label="2Play4Fun">
+            <span class="logo-box"><img src="https://www.tcg-collectors.com/img/logos/7w.webp" width="200" height="200" alt="2Play4Fun logo"></span>
+            <span>
+              <h3>2Play4Fun</h3>
+              <p>Creative, educational toys.</p>
+            </span>
           </a>
-          <a class="brand-link reveal" href="https://casual-vibes.com" target="_blank" rel="noopener">
-            <span class="brand-logo"><img src="https://www.tcg-collectors.com/img/logos/9b.webp" width="200" height="200" alt="Casual-Vibes"></span>
-            <span>Casual-Vibes</span>
+
+          <a class="pill reveal" href="https://casual-vibes.com" target="_blank" rel="noopener" role="listitem" aria-label="Casual-Vibes">
+            <span class="logo-box"><img src="https://www.tcg-collectors.com/img/logos/9b.webp" width="200" height="200" alt="Casual-Vibes logo"></span>
+            <span>
+              <h3>Casual-Vibes</h3>
+              <p>Light, versatile daily wear.</p>
+            </span>
           </a>
-          <a class="brand-link reveal" href="https://world-decor.com" target="_blank" rel="noopener">
-            <span class="brand-logo"><img src="https://www.tcg-collectors.com/img/logos/10b.webp" width="200" height="200" alt="World-Decor"></span>
-            <span>World-Decor</span>
+
+          <a class="pill reveal" href="https://world-decor.com" target="_blank" rel="noopener" role="listitem" aria-label="World-Decor">
+            <span class="logo-box"><img src="https://www.tcg-collectors.com/img/logos/10b.webp" width="200" height="200" alt="World-Decor logo"></span>
+            <span>
+              <h3>World-Decor</h3>
+              <p>Decor with soul.</p>
+            </span>
           </a>
-          <a class="brand-link reveal" href="https://www.innovatech-zone.com" target="_blank" rel="noopener">
-            <span class="brand-logo"><img src="https://www.tcg-collectors.com/img/logos/11w.webp" width="200" height="200" alt="Innovatech Zone"></span>
-            <span>Innovatech Zone</span>
+
+          <a class="pill reveal" href="https://www.innovatech-zone.com" target="_blank" rel="noopener" role="listitem" aria-label="Innovatech Zone">
+            <span class="logo-box"><img src="https://www.tcg-collectors.com/img/logos/11w.webp" width="200" height="200" alt="Innovatech Zone logo"></span>
+            <span>
+              <h3>Innovatech Zone</h3>
+              <p>Smart tech & everyday solutions.</p>
+            </span>
           </a>
         </div>
       </div>
@@ -397,41 +441,21 @@
           }
         })
       }, {threshold:.15});
-      document.querySelectorAll('.reveal, .why-item, .chip, .step, .brand-link').forEach(el=>io.observe(el));
+      document.querySelectorAll('.reveal, .why-item, .chip, .step, .pill').forEach(el=>io.observe(el));
     } else {
-      // If user prefers reduced motion, reveal instantly
-      document.querySelectorAll('.reveal, .why-item, .chip, .step, .brand-link').forEach(el=>el.classList.add('reveal-in'));
+      document.querySelectorAll('.reveal, .why-item, .chip, .step, .pill').forEach(el=>el.classList.add('reveal-in'));
     }
 
-    // Subtle parallax on the "pearl" with mouse move
+    // Optional: keyboard assist for horizontal rail (left/right arrows)
     (function(){
-      const pearl = document.querySelector('.pearl');
-      if(!pearl || prefersReduced) return;
-
-      let targetX = 0, targetY = 0, currX = 0, currY = 0, raf;
-      const damp = 0.06;
-
-      function onMove(e){
-        const rect = pearl.getBoundingClientRect();
-        const midX = rect.left + rect.width/2;
-        const midY = rect.top + rect.height/2;
-        const dx = (e.clientX - midX) / rect.width;  // -0.5 .. 0.5+
-        const dy = (e.clientY - midY) / rect.height;
-        targetX = dx * 12;   // max ~12px
-        targetY = dy * 12;
-        if(!raf) tick();
-      }
-
-      function tick(){
-        currX += (targetX - currX) * damp;
-        currY += (targetY - currY) * damp;
-        pearl.style.setProperty('--mx', currX.toFixed(2) + 'px');
-        pearl.style.setProperty('--my', currY.toFixed(2) + 'px');
-        if (Math.abs(currX - targetX) < 0.1 && Math.abs(currY - targetY) < 0.1) { raf = null; return; }
-        raf = requestAnimationFrame(tick);
-      }
-
-      window.addEventListener('mousemove', onMove);
+      const rail = document.querySelector('.rail');
+      if(!rail) return;
+      rail.addEventListener('keydown', (e)=>{
+        if(e.key === 'ArrowRight'){ rail.scrollBy({left: 300, behavior:'smooth'}); }
+        if(e.key === 'ArrowLeft'){ rail.scrollBy({left: -300, behavior:'smooth'}); }
+      });
+      rail.setAttribute('tabindex','0');
+      rail.setAttribute('aria-label','Our stores carousel');
     })();
   </script>
 </body>
