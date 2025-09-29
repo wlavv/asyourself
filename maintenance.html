@@ -32,268 +32,128 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
   <style>
-    /* ================= Design tokens ================= */
+    /* ===== Design tokens ===== */
     :root{
-      /* Beauty/pastel palette */
-      --ink:#1b1622;
-      --muted:#6f6a7e;
-      --canvas:#f7f3ef;
-      --paper:#ffffff;
-
-      --accent-grad: linear-gradient(135deg, #ffbfe4 0%, #cbbdff 50%, #ffd6b3 100%);
+      --ink:#1b1622; --muted:#6f6a7e; --canvas:#f7f3ef;
+      --accent-grad: linear-gradient(135deg,#ffbfe4 0%,#cbbdff 50%,#ffd6b3 100%);
       --veil-grad: radial-gradient(1100px 480px at 85% -10%, rgba(255,216,234,.65), transparent 60%),
                    radial-gradient(900px 420px at 10% 20%, rgba(217,208,255,.55), transparent 60%),
                    radial-gradient(900px 420px at 90% 70%, rgba(255,217,196,.45), transparent 60%);
-
-      --radius-lg: 28px;
-      --shadow-sm: 0 8px 24px rgba(44,20,70,.10);
-      --shadow-md: 0 16px 48px rgba(44,20,70,.12);
       --hairline: rgba(0,0,0,.08);
     }
 
-    /* ================= Base ================= */
+    /* ===== Base ===== */
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
-      color:var(--ink);
-      background: var(--canvas);
-      overflow-x:hidden;
-    }
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--canvas);overflow-x:hidden}
     .container{width:min(1100px,92vw);margin-inline:auto}
-
-    h1,h2{letter-spacing:.2px}
     h1{font-size:clamp(2.2rem,4.6vw,3.6rem);line-height:1.06;margin:0 0 .7rem}
     h2{font-size:clamp(1.4rem,2.6vw,2rem);margin:0 0 .8rem}
-    p{margin:.5rem 0 0; color:var(--muted); font-size:1.05rem}
+    p{margin:.5rem 0 0;color:var(--muted);font-size:1.05rem}
 
-    /* ================= Site header (brand + dev ribbon) ================= */
-    .site-head{padding:18px 0 6px; position:relative}
-    .brand-row{display:flex;align-items:center;gap:12px}
-    .logo{
-      width:28px;height:28px;border-radius:9px;
-      background: var(--accent-grad);
-      box-shadow: 0 0 1px rgba(0,0,0,.15), 0 10px 24px rgba(203,189,255,.35);
-    }
-    .brand{font-weight:900}
-    .dev-ribbon{
-      display:inline-flex; align-items:center; gap:.5rem;
-      padding:.35rem .65rem; border-radius:999px; margin-top:10px;
-      background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.6));
-      border:1px solid rgba(0,0,0,.05);
-      font-weight:800; color:#3a2f47;
-    }
-
-    /* ================= Sculpted background veil (integrated & animated) ================= */
-    .page{position:relative; isolation:isolate;}
+    /* ===== Sculpted glow background ===== */
+    .page{position:relative;isolation:isolate}
     .page::before{
-      content:"";
-      position:fixed; inset:-10% -10% auto -10%; top:-6vh; height:82vh; z-index:-2;
-      background: var(--veil-grad);
-      filter: blur(50px);
-      opacity:.9;
-      animation: drift 22s ease-in-out infinite alternate;
-      will-change: transform;
-      mask: radial-gradient(120% 100% at 50% 0%, #000 60%, transparent 61%);
+      content:"";position:fixed;inset:-10% -10% auto -10%;top:-6vh;height:82vh;z-index:-2;
+      background:var(--veil-grad);filter:blur(50px);opacity:.9;
+      animation:drift 22s ease-in-out infinite alternate;will-change:transform;
+      mask:radial-gradient(120% 100% at 50% 0%, #000 60%, transparent 61%);
     }
-    @keyframes drift{
-      from{ transform: translate3d(0,0,0) scale(1);}
-      to  { transform: translate3d(0,-2vh,0) scale(1.03);}
+    @keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(0,-2vh,0) scale(1.03)}}
+
+    /* ===== Header (logo + dev pill à direita do logo) ===== */
+    .site-head{padding:18px 0}
+    .brand-row{display:flex;align-items:center;gap:10px}
+    .logo{width:28px;height:28px;border-radius:9px;background:var(--accent-grad);box-shadow:0 0 1px rgba(0,0,0,.15),0 10px 24px rgba(203,189,255,.35)}
+    .brand{font-weight:900}
+    .dev-pill{
+      margin-left:6px;display:inline-flex;align-items:center;gap:.45rem;padding:.38rem .6rem;border-radius:999px;
+      background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.06);
+      font-weight:800;color:#3a2f47;white-space:nowrap
     }
 
-    /* ================= HERO (no cards; text + integrated ribbons) ================= */
-    .hero{padding:42px 0 28px; position:relative}
-    .hero-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center}
-    .eyebrow{
-      display:inline-flex; gap:.5rem; align-items:center;
-      padding:.42rem .7rem; border-radius:999px;
-      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.7));
-      border:1px solid rgba(0,0,0,.05);
-      font-weight:800; color:#3a2f47;
-    }
+    /* ===== Hero ===== */
+    .hero{padding:38px 0 20px}
+    .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+    .eyebrow{display:inline-flex;gap:.5rem;align-items:center;padding:.42rem .7rem;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.05);font-weight:800;color:#3a2f47}
     .lead{max-width:62ch}
-
     .cta-row{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem}
-    .btn{
-      display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
-      padding:1rem 1.2rem; min-height:46px; border-radius:14px; text-decoration:none;
-      font-weight:900; letter-spacing:.2px; transition:transform .18s ease, filter .18s ease;
-      box-shadow: 0 12px 34px rgba(203,189,255,.25);
-    }
-    .btn.primary{color:#1b1622;background-image:var(--accent-grad); border:0}
-    .btn.primary:hover{transform:translateY(-1px); filter:saturate(1.04) brightness(1.02)}
-    .btn.ghost{
-      color:#1b1622; border:1px solid rgba(0,0,0,.06);
-      background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.6));
-      backdrop-filter: blur(8px);
-    }
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;padding:1rem 1.2rem;min-height:46px;border-radius:14px;text-decoration:none;font-weight:900;letter-spacing:.2px;transition:transform .18s ease,filter .18s ease;box-shadow:0 12px 34px rgba(203,189,255,.25)}
+    .btn.primary{color:#1b1622;background-image:var(--accent-grad);border:0}
+    .btn.primary:hover{transform:translateY(-1px);filter:saturate(1.04) brightness(1.02)}
+    .btn.ghost{color:#1b1622;border:1px solid rgba(0,0,0,.06);background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.6));backdrop-filter:blur(8px)}
     .btn.ghost:hover{transform:translateY(-1px)}
+    .ribbons{position:relative;min-height:500px}
+    .ribbons::before,.ribbons::after{content:"";position:absolute;inset:0;background:conic-gradient(from 210deg,rgba(255,191,228,.5),rgba(203,189,255,.5),rgba(255,214,179,.45),transparent 70%);filter:blur(22px);opacity:.9;border-radius:60px;transform:rotate(-6deg);animation:breathe 14s ease-in-out infinite;mix-blend-mode:screen}
+    .ribbons::after{inset:10% 0 0 10%;filter:blur(30px);opacity:.6;transform:rotate(6deg);animation-duration:18s}
+    @keyframes breathe{0%,100%{transform:translateY(0) rotate(var(--angle,-6deg))}50%{transform:translateY(-8px) rotate(var(--angle,-6deg))}}
+    .sep{height:1px;background:linear-gradient(90deg,transparent,var(--hairline),transparent)}
 
-    /* Subtle decorative ribbons on the right (integrated, not separate object) */
-    .ribbons{
-      position:relative; min-height:500px;
-    }
-    .ribbons::before,
-    .ribbons::after{
-      content:""; position:absolute; inset:0;
-      background: conic-gradient(from 210deg, rgba(255,191,228,.5), rgba(203,189,255,.5), rgba(255,214,179,.45), transparent 70%);
-      filter: blur(22px); opacity:.9; border-radius:60px;
-      transform: rotate(-6deg);
-      animation: breathe 14s ease-in-out infinite;
-      mix-blend-mode: screen;
-    }
-    .ribbons::after{
-      inset:10% 0 0 10%;
-      filter: blur(30px); opacity:.6; transform: rotate(6deg);
-      animation-duration: 18s;
-    }
-    @keyframes breathe{
-      0%,100%{ transform: translateY(0) rotate(var(--angle, -6deg)); }
-      50%    { transform: translateY(-8px) rotate(var(--angle, -6deg)); }
-    }
-
-    .sep{height:1px;background:linear-gradient(90deg, transparent, var(--hairline), transparent)}
-
-    /* ================= WHY (text-only list with reveal) ================= */
+    /* ===== Why (text-only, no boxes) ===== */
     section{padding:64px 0}
-    .why-list{display:grid; gap:14px; margin-top:10px}
-    .why-item{
-      display:grid; grid-template-columns:28px 1fr; align-items:start; gap:10px;
-      padding: 10px 0; border-bottom: 1px dashed rgba(0,0,0,.06);
-      opacity:0; transform: translateY(10px); transition: 600ms ease;
-    }
-    .why-item.reveal-in{opacity:1; transform:none}
-    .tick{
-      width:28px;height:28px;border-radius:50%;
-      background:var(--accent-grad); display:grid;place-items:center;
-      box-shadow: var(--shadow-sm);
-      font-weight:900;
-    }
+    .why-list{display:grid;gap:14px;margin-top:10px}
+    .why-item{display:grid;grid-template-columns:28px 1fr;align-items:start;gap:10px;padding:10px 0;border-bottom:1px dashed rgba(0,0,0,.06);opacity:0;transform:translateY(10px);transition:600ms ease}
+    .why-item.reveal-in{opacity:1;transform:none}
+    .tick{width:28px;height:28px;border-radius:50%;background:var(--accent-grad);display:grid;place-items:center;font-weight:900;box-shadow:0 8px 22px rgba(203,189,255,.28)}
 
-    /* ================= INGREDIENT CHIPS ================= */
+    /* ===== Ingredients (chips) ===== */
     .chips{display:flex;flex-wrap:wrap;gap:10px}
-    .chip{
-      padding:.55rem .8rem; border-radius:999px;
-      background:linear-gradient(180deg, rgba(255,255,255,.95), rgba(255,255,255,.7));
-      border:1px solid rgba(0,0,0,.06);
-      box-shadow: 0 6px 18px rgba(203,189,255,.18);
-      font-weight:700; color:#2a2235;
-      opacity:0; transform: translateY(6px) scale(.98); transition: 500ms ease;
-    }
-    .chip.reveal-in{opacity:1; transform:none}
-    .chip:hover{transform: translateY(-1px)}
+    .chip{padding:.55rem .8rem;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.06);box-shadow:0 6px 18px rgba(203,189,255,.18);font-weight:700;color:#2a2235;opacity:0;transform:translateY(6px) scale(.98);transition:500ms ease}
+    .chip.reveal-in{opacity:1;transform:none}
+    .chip:hover{transform:translateY(-1px)}
 
-    /* ================= ROUTINE (timeline minimal) ================= */
+    /* ===== Routine (timeline minimal) ===== */
     .steps{display:grid;gap:14px;margin-top:8px;position:relative}
-    .steps::before{
-      content:""; position:absolute; left:14px; top:10px; bottom:10px; width:2px;
-      background:linear-gradient(180deg, rgba(0,0,0,.1), transparent);
-      border-radius:2px;
-    }
-    .step{
-      display:grid; grid-template-columns:40px 1fr; align-items:start; gap:12px;
-      padding: 2px 0;
-      opacity:0; transform: translateY(10px); transition: 600ms ease;
-    }
-    .step.reveal-in{opacity:1; transform:none}
-    .num{
-      width:28px;height:28px;margin-left:0.15rem;border-radius:50%;
-      background:linear-gradient(180deg, #fff, rgba(255,255,255,.7));
-      border:1px solid rgba(0,0,0,.06);
-      display:grid; place-items:center; font-weight:900;
-      box-shadow: 0 6px 18px rgba(203,189,255,.18);
-    }
-    .step h3{margin:0 0 .15rem; font-size:1.05rem}
+    .steps::before{content:"";position:absolute;left:14px;top:10px;bottom:10px;width:2px;background:linear-gradient(180deg,rgba(0,0,0,.1),transparent);border-radius:2px}
+    .step{display:grid;grid-template-columns:40px 1fr;align-items:start;gap:12px;padding:2px 0;opacity:0;transform:translateY(10px);transition:600ms ease}
+    .step.reveal-in{opacity:1;transform:none}
+    .num{width:28px;height:28px;margin-left:.15rem;border-radius:50%;background:linear-gradient(180deg,#fff,rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.06);display:grid;place-items:center;font-weight:900;box-shadow:0 6px 18px rgba(203,189,255,.18)}
+    .step h3{margin:0 0 .15rem;font-size:1.05rem}
 
-    /* ================= OUR STORES — featured rail (highlighted) ================= */
-    .stores{
-      padding:80px 0;
-      position:relative;
-    }
-    .stores .bg{
-      position:absolute; inset:0; z-index:-1;
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.6)),
-        var(--veil-grad);
-      filter: blur(30px) saturate(1.02);
-      opacity:.85;
-      mask: linear-gradient(180deg, transparent 0, #000 8%, #000 92%, transparent 100%);
-      animation: drift 26s ease-in-out infinite alternate;
-    }
-    .stores .head{
-      display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:14px;
-    }
+    /* ===== Our Stores (all visible; circular orbs) ===== */
+    .stores{padding:80px 0;position:relative}
+    .stores .bg{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.6)),var(--veil-grad);filter:blur(30px) saturate(1.02);opacity:.85;mask:linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%);animation:drift 26s ease-in-out infinite alternate}
     .stores .sub{color:var(--muted)}
-    .rail{
-      display:flex; gap:14px; overflow:auto; padding:6px 2px 8px; scroll-snap-type:x mandatory;
-      -webkit-overflow-scrolling: touch;
-      mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
-    }
-    .pill{
-      scroll-snap-align:center;
-      display:grid; grid-template-columns:82px 1fr; align-items:center; gap:12px;
-      min-width:min(460px, 92vw);
-      padding:12px 14px; border-radius:18px;
-      background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.7));
-      border:1px solid rgba(0,0,0,.06);
-      box-shadow: 0 14px 36px rgba(203,189,255,.25);
-      position:relative; overflow:hidden;
-    }
-    .pill::after{
-      content:""; position:absolute; inset:-40% -60% auto -60%; height:200%;
-      background: conic-gradient(from 0deg, rgba(255,255,255,.0) 0 20%, rgba(255,255,255,.5) 25%, rgba(255,255,255,.0) 35% 100%);
-      mix-blend-mode: screen; animation: sweep 9s linear infinite;
-      pointer-events:none;
-    }
-    @keyframes sweep{ to{ transform: rotate(1turn); } }
-    .logo-box{
-      width:82px; height:82px; border-radius:16px; overflow:hidden;
-      background:linear-gradient(180deg, #fff, rgba(255,255,255,.7));
-      border:1px solid rgba(0,0,0,.06);
-      display:grid; place-items:center;
-    }
-    .logo-box img{width:100%;height:100%;object-fit:contain}
-    .pill h3{margin:0; font-size:1.05rem}
-    .pill p{margin:.15rem 0 0}
-    .pill:hover{transform:translateY(-1px); transition: transform .18s ease}
+    .stores-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin-top:12px}
+    .store{display:grid;justify-items:center;text-align:center;gap:10px;text-decoration:none;color:inherit;opacity:0;transform:translateY(10px);transition:500ms ease}
+    .store.reveal-in{opacity:1;transform:none}
+    .orb{position:relative;width:120px;height:120px;border-radius:999px;background:linear-gradient(180deg,#fff,rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.06);display:grid;place-items:center;box-shadow:0 12px 36px rgba(203,189,255,.25);overflow:hidden;transition:transform .18s ease}
+    .orb::before{content:"";position:absolute;inset:-8px;border-radius:inherit;background:var(--accent-grad);-webkit-mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 8px), #000 calc(50% - 7px));mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 8px), #000 calc(50% - 7px));filter:blur(.8px);opacity:.9}
+    .store img{width:82%;height:82%;object-fit:contain}
+    .store h3{margin:.2rem 0 0;font-size:1.02rem}
+    .store small{color:var(--muted)}
+    .store:hover .orb{transform:translateY(-2px)}
+    .store:hover{transform:translateY(-2px)}
+    @media (max-width:1100px){.stores-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+    @media (max-width:780px){.stores-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media (max-width:560px){.stores-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.orb{width:110px;height:110px}}
 
-    /* Footer */
+    /* ===== Footer ===== */
     footer{padding:28px 0 36px}
     .foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
     .foot .logo{width:24px;height:24px;border-radius:7px}
 
-    /* ================= Responsive ================= */
-    @media (max-width:980px){
-      .hero-grid{grid-template-columns:1fr}
-      .ribbons{min-height:380px}
-    }
-    @media (max-width:560px){
-      .pill{grid-template-columns:72px 1fr; min-width:88%}
-      .logo-box{width:72px;height:72px}
-    }
-
-    /* Motion preferences */
+    /* Motion pref */
     @media (prefers-reduced-motion: reduce){
-      .btn, .why-item, .step, .chip, .pill {transition:none}
-      .page::before, .stores .bg, .ribbons::before, .ribbons::after {animation:none}
+      .btn,.why-item,.step,.chip,.store{transition:none}
+      .page::before,.stores .bg,.ribbons::before,.ribbons::after{animation:none}
     }
   </style>
 </head>
 <body>
   <div class="page">
-    <!-- Header + Dev ribbon -->
+    <!-- Header -->
     <header class="site-head">
       <div class="container">
         <div class="brand-row">
           <span class="logo" aria-hidden="true"></span>
           <strong class="brand">As-Yourself</strong>
+          <span class="dev-pill">🚧 In development • Early access soon</span>
         </div>
-        <div class="dev-ribbon">🚧 In development • Early access soon</div>
       </div>
     </header>
 
-    <!-- HERO -->
+    <!-- Hero -->
     <section class="hero">
       <div class="container hero-grid">
         <div>
@@ -305,27 +165,26 @@
             <a class="btn ghost" href="#stores">Explore our stores</a>
           </div>
         </div>
-
-        <!-- integrated ribbons instead of a standalone object -->
+        <!-- integrated background ribbons -->
         <div class="ribbons" aria-hidden="true"></div>
       </div>
     </section>
 
     <div class="sep"></div>
 
-    <!-- WHY -->
+    <!-- Why -->
     <section id="why">
       <div class="container">
         <h2>Why As-Yourself</h2>
         <div class="why-list">
-          <div class="why-item reveal"><div class="tick">✓</div><div><strong>Clean & responsible</strong><p>No unnecessary irritants. We focus on effective, skin-loving essentials that respect your barrier.</p></div></div>
+          <div class="why-item reveal"><div class="tick">✓</div><div><strong>Clean & responsible</strong><p>No unnecessary irritants — effective, skin-loving essentials that respect your barrier.</p></div></div>
           <div class="why-item reveal"><div class="tick">✓</div><div><strong>Sensitive-skin friendly</strong><p>Light textures with clinically-backed actives — balanced to be kind, never harsh.</p></div></div>
           <div class="why-item reveal"><div class="tick">✓</div><div><strong>Transparent by design</strong><p>Clear labels, clear routines. Every ingredient has a purpose — and we tell you why.</p></div></div>
         </div>
       </div>
     </section>
 
-    <!-- INGREDIENTS -->
+    <!-- Ingredients -->
     <section id="ingredients">
       <div class="container">
         <h2>Hero ingredients</h2>
@@ -340,7 +199,7 @@
       </div>
     </section>
 
-    <!-- ROUTINE -->
+    <!-- Routine -->
     <section id="routine">
       <div class="container">
         <h2>Build your routine</h2>
@@ -352,64 +211,48 @@
       </div>
     </section>
 
-    <!-- OUR STORES — highlighted rail -->
+    <!-- Our Stores (grid, all visible, circular) -->
     <section id="stores" class="stores">
       <div class="bg" aria-hidden="true"></div>
       <div class="container">
-        <div class="head">
-          <div>
-            <h2>Our Stores</h2>
-            <p class="sub">Explore our group — skincare, lifestyle, tech and more.</p>
-          </div>
-        </div>
+        <h2>Our Stores</h2>
+        <p class="sub">Explore our group — skincare, lifestyle, tech and more.</p>
 
-        <div class="rail" role="list">
-          <a class="pill reveal" href="https://life-style.pt" target="_blank" rel="noopener" role="listitem" aria-label="Life-Style">
-            <span class="logo-box"><img src="https://www.tcg-collectors.com/img/logos/3b.webp" width="200" height="200" alt="Life-Style logo"></span>
-            <span>
-              <h3>Life-Style</h3>
-              <p>Premium picks for home & wellness.</p>
-            </span>
+        <div class="stores-grid">
+          <a class="store reveal" href="https://life-style.pt" target="_blank" rel="noopener">
+            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/3b.webp" width="200" height="200" alt="Life-Style logo"></span>
+            <h3>Life-Style</h3>
+            <small>Premium picks for home & wellness.</small>
           </a>
 
-          <a class="pill reveal" href="https://www.tcg-collectors.com" target="_blank" rel="noopener" role="listitem" aria-label="TCG-Collectors">
-            <span class="logo-box"><img src="https://www.tcg-collectors.com/img/logos/4w.webp" width="200" height="200" alt="TCG-Collectors logo"></span>
-            <span>
-              <h3>TCG-Collectors</h3>
-              <p>For TCG collectors.</p>
-            </span>
+          <a class="store reveal" href="https://www.tcg-collectors.com" target="_blank" rel="noopener">
+            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/4w.webp" width="200" height="200" alt="TCG-Collectors logo"></span>
+            <h3>TCG-Collectors</h3>
+            <small>For TCG collectors and enthusiasts.</small>
           </a>
 
-          <a class="pill reveal" href="https://2play4fun.com" target="_blank" rel="noopener" role="listitem" aria-label="2Play4Fun">
-            <span class="logo-box"><img src="https://www.tcg-collectors.com/img/logos/7w.webp" width="200" height="200" alt="2Play4Fun logo"></span>
-            <span>
-              <h3>2Play4Fun</h3>
-              <p>Creative, educational toys.</p>
-            </span>
+          <a class="store reveal" href="https://2play4fun.com" target="_blank" rel="noopener">
+            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/7w.webp" width="200" height="200" alt="2Play4Fun logo"></span>
+            <h3>2Play4Fun</h3>
+            <small>Creative, educational toys for all ages.</small>
           </a>
 
-          <a class="pill reveal" href="https://casual-vibes.com" target="_blank" rel="noopener" role="listitem" aria-label="Casual-Vibes">
-            <span class="logo-box"><img src="https://www.tcg-collectors.com/img/logos/9b.webp" width="200" height="200" alt="Casual-Vibes logo"></span>
-            <span>
-              <h3>Casual-Vibes</h3>
-              <p>Light, versatile daily wear.</p>
-            </span>
+          <a class="store reveal" href="https://casual-vibes.com" target="_blank" rel="noopener">
+            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/9b.webp" width="200" height="200" alt="Casual-Vibes logo"></span>
+            <h3>Casual-Vibes</h3>
+            <small>Light, versatile daily wear.</small>
           </a>
 
-          <a class="pill reveal" href="https://world-decor.com" target="_blank" rel="noopener" role="listitem" aria-label="World-Decor">
-            <span class="logo-box"><img src="https://www.tcg-collectors.com/img/logos/10b.webp" width="200" height="200" alt="World-Decor logo"></span>
-            <span>
-              <h3>World-Decor</h3>
-              <p>Decor with soul.</p>
-            </span>
+          <a class="store reveal" href="https://world-decor.com" target="_blank" rel="noopener">
+            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/10b.webp" width="200" height="200" alt="World-Decor logo"></span>
+            <h3>World-Decor</h3>
+            <small>Decor with soul: wood, linen & ceramics.</small>
           </a>
 
-          <a class="pill reveal" href="https://www.innovatech-zone.com" target="_blank" rel="noopener" role="listitem" aria-label="Innovatech Zone">
-            <span class="logo-box"><img src="https://www.tcg-collectors.com/img/logos/11w.webp" width="200" height="200" alt="Innovatech Zone logo"></span>
-            <span>
-              <h3>Innovatech Zone</h3>
-              <p>Smart tech & everyday solutions.</p>
-            </span>
+          <a class="store reveal" href="https://www.innovatech-zone.com" target="_blank" rel="noopener">
+            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/11w.webp" width="200" height="200" alt="Innovatech Zone logo"></span>
+            <h3>Innovatech Zone</h3>
+            <small>Smart technology & everyday solutions.</small>
           </a>
         </div>
       </div>
@@ -430,33 +273,18 @@
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Scroll-reveal (adds .reveal-in when elements enter viewport)
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!prefersReduced) {
+    // Reveal on scroll
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reduced) {
       const io = new IntersectionObserver((entries)=>{
         entries.forEach(e=>{
-          if(e.isIntersecting){
-            e.target.classList.add('reveal-in');
-            io.unobserve(e.target);
-          }
+          if(e.isIntersecting){ e.target.classList.add('reveal-in'); io.unobserve(e.target); }
         })
       }, {threshold:.15});
-      document.querySelectorAll('.reveal, .why-item, .chip, .step, .pill').forEach(el=>io.observe(el));
+      document.querySelectorAll('.reveal, .why-item, .chip, .step, .store').forEach(el=>io.observe(el));
     } else {
-      document.querySelectorAll('.reveal, .why-item, .chip, .step, .pill').forEach(el=>el.classList.add('reveal-in'));
+      document.querySelectorAll('.reveal, .why-item, .chip, .step, .store').forEach(el=>el.classList.add('reveal-in'));
     }
-
-    // Optional: keyboard assist for horizontal rail (left/right arrows)
-    (function(){
-      const rail = document.querySelector('.rail');
-      if(!rail) return;
-      rail.addEventListener('keydown', (e)=>{
-        if(e.key === 'ArrowRight'){ rail.scrollBy({left: 300, behavior:'smooth'}); }
-        if(e.key === 'ArrowLeft'){ rail.scrollBy({left: -300, behavior:'smooth'}); }
-      });
-      rail.setAttribute('tabindex','0');
-      rail.setAttribute('aria-label','Our stores carousel');
-    })();
   </script>
 </body>
 </html>
