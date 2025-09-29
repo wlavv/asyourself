@@ -5,11 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <title>As-Yourself — Simple, effective skincare</title>
-  <meta name="description" content="Clean, effective skincare with a touch of glow. Gentle formulas, transparent routines, results you can feel." />
+  <meta name="description" content="Clean, effective skincare with a soft glow. Gentle formulas, transparent routines, results you can feel." />
 
   <!-- Open Graph -->
   <meta property="og:title" content="As-Yourself — Simple, effective skincare" />
-  <meta property="og:description" content="Clean, effective skincare with a touch of glow. Gentle formulas, transparent routines, results you can feel." />
+  <meta property="og:description" content="Clean, effective skincare with a soft glow. Gentle formulas, transparent routines, results you can feel." />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="As-Yourself" />
   <meta property="og:image" content="https://www.as-yourself.com/img/as-yourself-og-1200x630.jpg" />
@@ -19,7 +19,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="As-Yourself — Simple, effective skincare" />
-  <meta name="twitter:description" content="Clean, effective skincare with a touch of glow." />
+  <meta name="twitter:description" content="Clean, effective skincare with a soft glow." />
   <meta name="twitter:image" content="https://www.as-yourself.com/img/as-yourself-og-1200x628.jpg" />
 
   <link rel="canonical" href="https://www.as-yourself.com/" />
@@ -32,28 +32,32 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
   <style>
+    /* ============= Design tokens ============= */
     :root{
-      /* Paleta glow (pastel beauty) */
-      --ink:#17141c;
-      --muted:#6e6a7e;
-      --paper: rgba(255,255,255,0.6); /* semi para glass */
-      --canvas:#fff;
-      --line: rgba(255,255,255,0.45);
+      /* Beauty/pastel palette */
+      --ink:#1b1622;
+      --muted:#6f6a7e;
+      --canvas:#f9f6f4;       /* warm base */
+      --lumin:#ffffff;        /* pure white */
+      --rose:#ffd8ea;
+      --lilac:#d9d0ff;
+      --peach:#ffd9c4;
+      --champagne:#f5ede6;
 
-      --rose:#ffd3e6;
-      --lilac:#d8ccff;
-      --peach:#ffd9c7;
-      --champagne:#f9f1ea;
+      --accent: linear-gradient(135deg, #ffbfe4 0%, #cbbdff 50%, #ffd6b3 100%);
+      --soft-accent: linear-gradient(180deg, rgba(255,191,228,.55), rgba(203,189,255,.55) 60%, rgba(255,214,179,.55));
 
-      --brandGrad: linear-gradient(135deg, #ffbfe4 0%, #c8b8ff 50%, #ffd9b8 100%);
-      --brandGradSoft: linear-gradient(180deg, rgba(255,191,228,.55), rgba(200,184,255,.55) 60%, rgba(255,217,184,.55));
+      --radius-lg: 28px;
+      --radius-md: 18px;
 
-      --radius: 18px;
-      --shadow-lg: 0 20px 60px rgba(30,16,46,.16);
-      --shadow-md: 0 10px 30px rgba(30,16,46,.12);
-      --backdrop: blur(12px) saturate(1.15);
+      --shadow-sm: 0 8px 24px rgba(44,20,70,.10);
+      --shadow-md: 0 16px 48px rgba(44,20,70,.12);
+
+      --hairline: color-mix(in oklab, #000 10%, transparent);
+      --hairline-soft: color-mix(in oklab, #000 6%, transparent);
     }
 
+    /* ============= Base ============= */
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
@@ -61,380 +65,364 @@
       font-family: Inter, ui-sans-serif, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
       color:var(--ink);
       background:
-        radial-gradient(1200px 520px at 85% -10%, rgba(255,228,244,.75), transparent 60%),
-        radial-gradient(900px 420px at 10% 20%, rgba(216,204,255,.65), transparent 60%),
-        radial-gradient(900px 420px at 90% 70%, rgba(255,217,184,.55), transparent 60%),
+        radial-gradient(1200px 500px at 85% -10%, rgba(255,216,234,.65), transparent 60%),
+        radial-gradient(900px 420px at 10% 20%, rgba(217,208,255,.55), transparent 60%),
+        radial-gradient(900px 420px at 90% 70%, rgba(255,217,196,.45), transparent 60%),
         var(--champagne);
+      /* Sculpted “cut” layers */
+      background-attachment: fixed;
     }
-    .container{width:min(1120px,92vw);margin-inline:auto}
+    .container{width:min(1100px,92vw);margin-inline:auto}
 
-    /* Header minimal (sem nav) */
-    .site-head{padding:18px 0 8px}
-    .head-row{display:flex;align-items:center;gap:12px}
-    .logo-tile{
-      width:28px;height:28px;border-radius:8px;
-      background: var(--brandGrad);
-      box-shadow: 0 0 1px rgba(0,0,0,.15), 0 10px 24px rgba(200,184,255,.35);
-    }
-    .brand{font-weight:900;letter-spacing:.2px}
+    /* Global typographic rhythm */
+    h1,h2{letter-spacing:.2px}
+    h1{font-size:clamp(2.2rem,4.6vw,3.6rem);line-height:1.06;margin:0 0 .7rem}
+    h2{font-size:clamp(1.4rem,2.6vw,2rem);margin:0 0 .8rem}
+    p{margin:.5rem 0 0; color:var(--muted); font-size:1.05rem}
 
-    /* HERO — centro limpo com glow */
-    .hero{position:relative;padding:24px 0 8px}
-    .hero::before{
-      content:""; position:absolute; inset:-8% -8% auto -8%; top:0; height:60%;
-      background: var(--brandGradSoft);
-      filter: blur(60px);
-      opacity:.55; pointer-events:none;
-    }
-    .hero-wrap{
+    /* Hairline separators (no boxes) */
+    .sep{height:1px;background:linear-gradient(90deg, transparent, var(--hairline), transparent)}
+
+    /* ============= Sculpted background wrapper ============= */
+    .page{
       position:relative;
-      display:grid; grid-template-columns:1.05fr .95fr; gap:28px; align-items:center;
+      isolation:isolate;
+    }
+    /* top sculpt */
+    .page::before{
+      content:"";
+      position:fixed; inset:-10% -10% auto -10%; top:0; height:68vh; z-index:-1;
+      background:
+        radial-gradient(70% 60% at 70% -10%, rgba(255,191,228,.65), transparent 60%),
+        radial-gradient(60% 50% at 20% 20%, rgba(203,189,255,.55), transparent 60%),
+        radial-gradient(55% 45% at 80% 70%, rgba(255,214,179,.50), transparent 60%);
+      filter: blur(50px);
+      opacity:.9;
+      mask:
+        radial-gradient(120% 100% at 50% 0%, #000 60%, transparent 61%) /* soft curve bottom */;
+    }
+    /* subtle “engraved” ridge under hero */
+    .page::after{
+      content:"";
+      position:absolute; left:0; right:0; top:72vh; height:42px; z-index:-1;
+      background: radial-gradient(60% 40% at 50% 0%, rgba(255,255,255,.9), transparent 70%);
+      filter: blur(12px);
+      opacity:.7;
     }
 
-    .glass{
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-lg);
-      -webkit-backdrop-filter: var(--backdrop);
-      backdrop-filter: var(--backdrop);
+    /* ============= Header minimal (no nav) ============= */
+    .site-head{padding:22px 0 8px}
+    .brand-row{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:28px;height:28px;border-radius:9px;
+      background: var(--accent);
+      box-shadow: 0 0 1px rgba(0,0,0,.15), 0 10px 24px rgba(203,189,255,.35);
     }
+    .brand{font-weight:900}
 
-    .card-hero{
-      padding:28px; overflow:hidden; position:relative;
-    }
-    .card-hero::after{
-      content:""; position:absolute; inset:0; pointer-events:none;
-      background: radial-gradient(500px 160px at 10% -10%, rgba(255,255,255,.8), transparent 60%);
-      mix-blend-mode: screen; opacity:.6;
+    /* ============= HERO (text-first, integrated) ============= */
+    .hero{padding:38px 0 24px}
+    .hero-grid{
+      display:grid; grid-template-columns:1.1fr .9fr; gap:36px; align-items:center;
     }
 
     .eyebrow{
-      display:inline-flex; align-items:center; gap:.5rem;
-      padding:.38rem .65rem; border-radius:999px;
-      border:1px solid rgba(255,255,255,.6);
-      background:linear-gradient(180deg, rgba(255,255,255,.7), rgba(255,255,255,.45));
-      box-shadow: inset 0 0 0 1px rgba(255,255,255,.25);
+      display:inline-flex; gap:.5rem; align-items:center;
+      padding:.42rem .7rem; border-radius:999px;
+      background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.55));
+      border:1px solid rgba(0,0,0,.05);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,.4);
       font-weight:800; color:#3a2f47;
     }
-    h1{font-size:clamp(2.1rem,4.6vw,3.4rem); line-height:1.07; margin:.6rem 0 .7rem}
-    .lead{color:var(--muted); font-size:1.08rem; max-width:60ch}
+    .lead{max-width:62ch}
 
-    .hero-ctas{display:flex; gap:.75rem; flex-wrap:wrap; margin-top:20px}
+    .cta-row{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem}
     .btn{
       display:inline-flex; align-items:center; justify-content:center; gap:.55rem;
-      padding:.95rem 1.2rem; min-height:46px; border-radius:14px; text-decoration:none;
-      font-weight:900; letter-spacing:.2px; transition:.18s ease;
-      box-shadow: 0 10px 30px rgba(200,184,255,.25);
+      padding:1rem 1.2rem; min-height:46px; border-radius:14px; text-decoration:none;
+      font-weight:900; letter-spacing:.2px; transition:transform .18s ease, filter .18s ease;
+      box-shadow: 0 12px 34px rgba(203,189,255,.25);
     }
-    .btn.primary{
-      color:#1b1622; border:0; background-image: var(--brandGrad);
-    }
-    .btn.primary:hover{ transform: translateY(-1px); filter: saturate(1.05) brightness(1.02) }
-    .btn.secondary{
+    .btn.primary{color:#1b1622;background-image:var(--accent); border:0}
+    .btn.primary:hover{transform:translateY(-1px); filter:saturate(1.04) brightness(1.02)}
+    .btn.ghost{
       color:#1b1622; border:1px solid rgba(0,0,0,.06);
-      background: linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.6));
-      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+      background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.6));
+      backdrop-filter: blur(8px);
     }
-    .btn.secondary:hover{ transform: translateY(-1px) }
+    .btn.ghost:hover{transform:translateY(-1px)}
 
-    /* Mock glam à direita (frasco + halo) */
-    .mock{position:relative; min-height:460px}
-    .halo{
-      position:absolute; inset:auto 0 0 0; height:180px;
-      background: radial-gradient(closest-side, rgba(255,255,255,.9), rgba(255,255,255,0));
-      filter: blur(12px); transform: translateY(40px);
-      opacity:.8; pointer-events:none;
+    /* Hero art: pure shapes (no cards) */
+    .hero-art{
+      position:relative; min-height:520px;
     }
+    .halo{
+      position:absolute; inset:auto 0 10% 0; height:180px;
+      background: radial-gradient(closest-side, rgba(255,255,255,.95), rgba(255,255,255,0));
+      filter: blur(16px); opacity:.9;
+    }
+    /* bottle silhouette only with gradients (integrated, not boxed) */
     .bottle{
-      position:absolute; right:8%; top:2%;
-      width:min(380px,40vw); aspect-ratio:3/6.8; border-radius:28px;
-      background: linear-gradient(180deg, #ffffff, #fbf6ff);
-      border: 1px solid rgba(255,255,255,.7);
-      box-shadow: 0 20px 60px rgba(74,39,109,.18), inset 0 0 0 1px rgba(255,255,255,.6);
+      position:absolute; right:8%; top:0;
+      width:min(420px,44vw); aspect-ratio:3/6.6; border-radius:34px;
+      background:
+        linear-gradient(180deg, #ffffff, #fbf8ff 70%, #ffffff),
+        radial-gradient(80% 30% at 50% 0%, rgba(255,255,255,.9), transparent 70%);
+      border:1px solid rgba(255,255,255,.8);
+      box-shadow: 0 24px 70px rgba(74,39,109,.18), inset 0 0 0 1px rgba(255,255,255,.6);
       overflow:hidden;
     }
-    .bottle .cap{
-      height:72px; background: linear-gradient(180deg, #3a2f47, #2a2235);
+    .cap{
+      height:76px; background:linear-gradient(180deg, #3a2f47, #2a2235);
       box-shadow: inset 0 1px 0 rgba(255,255,255,.25);
     }
-    .bottle .label{
+    .label{
       height:100%;
       background:
+        radial-gradient(700px 260px at 70% -10%, rgba(255,191,228,.55), transparent 60%),
+        radial-gradient(700px 240px at 35% 5%, rgba(203,189,255,.50), transparent 60%),
+        radial-gradient(700px 240px at 20% 35%, rgba(255,214,179,.45), transparent 60%),
         linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,0) 18%),
-        radial-gradient(700px 240px at 70% -8%, rgba(255,191,228,.55), transparent 60%),
-        radial-gradient(700px 240px at 40% 0%, rgba(200,184,255,.48), transparent 60%),
-        radial-gradient(700px 240px at 20% 30%, rgba(255,217,184,.45), transparent 60%),
         #fff;
     }
 
-    /* Sparkles discretos */
-    .sparkles{
-      position:absolute; inset:0; pointer-events:none; mix-blend-mode:screen; opacity:.7;
-      background:
-        radial-gradient(6px 6px at 12% 24%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(5px 5px at 44% 18%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(7px 7px at 78% 12%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(6px 6px at 86% 44%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(5px 5px at 22% 68%, rgba(255,255,255,.9), transparent 60%),
-        radial-gradient(6px 6px at 66% 70%, rgba(255,255,255,.9), transparent 60%);
-      filter: blur(.4px);
+    /* ============= “Why” — text lines (no cards) ============= */
+    section{padding:64px 0}
+    .why-list{
+      display:grid; gap:14px; margin-top:10px;
+    }
+    .why-item{
+      display:grid; grid-template-columns:28px 1fr; align-items:start; gap:10px;
+      padding: 10px 0;
+      border-bottom: 1px dashed var(--hairline-soft);
+    }
+    .why-item:last-child{border-bottom: none}
+    .tick{
+      width:28px;height:28px;border-radius:50%;
+      background:var(--accent); display:grid;place-items:center;
+      box-shadow: var(--shadow-sm);
+      font-weight:900;
     }
 
-    /* Secções */
-    section{padding:70px 0 60px}
-    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:18px}
-    .section-title{font-size:1.6rem;margin:0}
-
-    /* Features — glass cards */
-    .feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-    .feature{
-      border-radius:16px; padding:18px 18px 16px;
-      border:1px solid var(--line); box-shadow: var(--shadow-md);
-      background: linear-gradient(180deg, rgba(255,255,255,.75), rgba(255,255,255,.55));
-      -webkit-backdrop-filter: blur(10px) saturate(1.1);
-      backdrop-filter: blur(10px) saturate(1.1);
-      position:relative; overflow:hidden;
+    /* ============= Ingredients — chips (no cards) ============= */
+    .chips{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{
+      padding:.55rem .8rem; border-radius:999px;
+      background:linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.6));
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow: 0 6px 18px rgba(203,189,255,.18);
+      font-weight:700; color:#2a2235;
     }
-    .feature::before{
-      content:""; position:absolute; left:0; right:0; top:0; height:3px; background: var(--brandGrad);
-    }
-    .feature h3{margin:.2rem 0 .35rem}
-    .muted{color:var(--muted)}
 
-    /* Routine — cartões suaves */
-    .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+    /* ============= Routine — numbered steps, connected by hairline ============= */
+    .steps{display:grid;gap:14px;margin-top:8px;position:relative}
+    .steps::before{
+      content:""; position:absolute; left:14px; top:10px; bottom:10px; width:2px;
+      background:linear-gradient(180deg, var(--hairline), transparent);
+      border-radius:2px;
+    }
     .step{
-      display:grid; grid-template-columns:96px 1fr; gap:14px; align-items:center;
-      border-radius:16px; border:1px solid var(--line); overflow:hidden;
-      background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.6));
-      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-      box-shadow: var(--shadow-md);
+      display:grid; grid-template-columns:40px 1fr; align-items:start; gap:12px;
+      padding: 2px 0;
     }
-    .step .thumb{width:96px;height:96px;background:#fff;border-right:1px solid var(--line)}
-    .step .thumb img{width:100%;height:100%;object-fit:cover}
-    .step h3{margin:.2rem 0 .2rem}
+    .num{
+      width:28px;height:28px;margin-left:0.15rem;border-radius:50%;
+      background:linear-gradient(180deg, #fff, rgba(255,255,255,.7));
+      border:1px solid rgba(0,0,0,.06);
+      display:grid; place-items:center; font-weight:900;
+      box-shadow: 0 6px 18px rgba(203,189,255,.18);
+    }
+    .step h3{margin:0 0 .15rem; font-size:1.05rem}
 
-    /* Stores (opcional) */
-    .brands{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
-    .store-card{
-      display:flex;align-items:center;gap:12px;padding:10px;min-height:84px;text-decoration:none;color:inherit;
-      border-radius:14px;border:1px dashed rgba(255,255,255,.6);
-      background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.55));
-      -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
-      box-shadow: var(--shadow-md); position:relative; overflow:hidden;
+    /* ============= Stores — minimal grid (no frames) ============= */
+    .brand-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px}
+    .brand-link{
+      display:flex;align-items:center;gap:10px;text-decoration:none;color:inherit;
     }
-    .store-card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--brandGrad)}
-    .store-card > div:first-child{
-      width:84px;height:84px;flex:0 0 84px;border-radius:12px;background:#fff;
-      display:flex;align-items:center;justify-content:center;overflow:hidden;
-      box-shadow: inset 10px 10px 22px rgba(0,0,0,.06), inset -10px -10px 22px rgba(255,255,255,.9);
-      border:1px solid rgba(0,0,0,.04);
+    .brand-logo{
+      width:72px;height:72px;border-radius:18px; overflow:hidden;
+      background:linear-gradient(180deg, #fff, rgba(255,255,255,.7));
+      border:1px solid rgba(0,0,0,.05);
+      box-shadow: var(--shadow-sm);
+      display:grid;place-items:center;
     }
-    .store-card > div:first-child img{width:100%;height:100%;object-fit:contain}
-    .store-card h3{margin:0;font-size:1rem}
-    .store-card p{margin:0;color:var(--muted);font-weight:600;font-size:.9rem}
+    .brand-logo img{width:100%;height:100%;object-fit:contain}
 
-    footer{padding:28px 0 34px;color:#3a2f47}
+    /* ============= Footer ============= */
+    footer{padding:28px 0 36px}
     .foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
-    .foot .brand-wrap{display:flex;align-items:center;gap:10px}
-    .foot .logo-tile{width:24px;height:24px;border-radius:7px}
+    .foot .brand-row .logo{width:24px;height:24px;border-radius:7px}
 
-    /* Responsivo */
-    @media (max-width:1024px){
-      .hero-wrap{grid-template-columns:1fr}
-      .mock{min-height:380px}
-      .bottle{right:8%; top:6%; width:min(340px,70vw)}
-      .feature-grid{grid-template-columns:1fr 1fr}
-      .steps{grid-template-columns:1fr}
-      .brands{grid-template-columns:repeat(3,minmax(0,1fr))}
+    /* ============= Responsive ============= */
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr}
+      .hero-art{min-height:420px}
+      .bottle{right:auto;left:50%;transform:translateX(-50%)}
+      .brand-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
     }
     @media (max-width:560px){
-      .feature-grid{grid-template-columns:1fr}
-      .brands{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .brand-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
 
     /* Motion-safe */
     @media (prefers-reduced-motion: reduce){
-      .btn,.card-hero,.bottle{transition:none}
+      .btn{transition:none}
     }
   </style>
 </head>
 <body>
-  <!-- Header minimal -->
-  <header class="site-head">
-    <div class="container head-row">
-      <span class="logo-tile" aria-hidden="true"></span>
-      <span class="brand">As-Yourself</span>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="sparkles" aria-hidden="true"></div>
-    <div class="container hero-wrap">
-      <div class="glass card-hero">
-        <span class="eyebrow">✨ Clean • Conscious • Glow</span>
-        <h1>Skincare that feels gentle, looks radiant, and fits your life.</h1>
-        <p class="lead">Formulas designed to calm, hydrate and protect. Build a routine that delivers real results — with ingredients you can trust and a finish that glows.</p>
-        <div class="hero-ctas">
-          <a class="btn primary" href="#about">Discover more</a>
-          <a class="btn secondary" href="#routine">Build your routine</a>
-        </div>
+  <div class="page">
+    <!-- Header minimal -->
+    <header class="site-head">
+      <div class="container brand-row">
+        <span class="logo" aria-hidden="true"></span>
+        <strong class="brand">As-Yourself</strong>
       </div>
+    </header>
 
-      <div class="mock" aria-hidden="true">
-        <div class="bottle">
-          <div class="cap"></div>
-          <div class="label"></div>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">✨ Clean • Conscious • Glow</span>
+          <h1>Skincare that feels gentle, looks radiant, and fits your life.</h1>
+          <p class="lead">Formulas designed to calm, hydrate and protect. Build a routine that delivers real results — with ingredients you can trust and a soft-focus finish that glows.</p>
+          <div class="cta-row">
+            <a class="btn primary" href="#why">Discover more</a>
+            <a class="btn ghost" href="#routine">Build your routine</a>
+          </div>
         </div>
-        <div class="halo"></div>
-      </div>
-    </div>
-  </section>
 
-  <main>
-    <!-- FEATURES -->
-    <section id="about">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Why As-Yourself</h2>
-        </div>
-        <div class="feature-grid">
-          <article class="feature">
-            <h3>Clean & responsible</h3>
-            <p class="muted">No unnecessary irritants. We focus on effective, skin-loving essentials that respect your barrier.</p>
-          </article>
-          <article class="feature">
-            <h3>Sensitive-skin friendly</h3>
-            <p class="muted">Light textures with clinically-backed actives — balanced to be kind, never harsh.</p>
-          </article>
-          <article class="feature">
-            <h3>Transparent by design</h3>
-            <p class="muted">Clear labels, clear routines. Every ingredient has a purpose — and we tell you why.</p>
-          </article>
+        <div class="hero-art" aria-hidden="true">
+          <div class="bottle">
+            <div class="cap"></div>
+            <div class="label"></div>
+          </div>
+          <div class="halo"></div>
         </div>
       </div>
     </section>
 
-    <!-- INGREDIENTS -->
+    <div class="sep"></div>
+
+    <!-- WHY (no cards) -->
+    <section id="why">
+      <div class="container">
+        <h2>Why As-Yourself</h2>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="tick">✓</div>
+            <div>
+              <strong>Clean & responsible</strong>
+              <p>No unnecessary irritants. We focus on effective, skin-loving essentials that respect your barrier.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="tick">✓</div>
+            <div>
+              <strong>Sensitive-skin friendly</strong>
+              <p>Light textures with clinically-backed actives — balanced to be kind, never harsh.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="tick">✓</div>
+            <div>
+              <strong>Transparent by design</strong>
+              <p>Clear labels, clear routines. Every ingredient has a purpose — and we tell you why.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- INGREDIENTS (chips) -->
     <section id="ingredients">
       <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Hero ingredients</h2>
-        </div>
-        <div class="feature-grid">
-          <article class="feature">
-            <h3>Niacinamide</h3>
-            <p class="muted">Helps even tone and supports the skin barrier for a calmer look.</p>
-          </article>
-          <article class="feature">
-            <h3>Hyaluronic Acid</h3>
-            <p class="muted">Multi-weight hydration to plump and smooth without heaviness.</p>
-          </article>
-          <article class="feature">
-            <h3>Centella Asiatica</h3>
-            <p class="muted">Known to soothe redness and support recovery after stress.</p>
-          </article>
+        <h2>Hero ingredients</h2>
+        <div class="chips" role="list">
+          <span class="chip" role="listitem">Niacinamide</span>
+          <span class="chip" role="listitem">Hyaluronic Acid (multi-weight)</span>
+          <span class="chip" role="listitem">Centella Asiatica</span>
+          <span class="chip" role="listitem">Ceramides</span>
+          <span class="chip" role="listitem">Panthenol</span>
+          <span class="chip" role="listitem">Squalane</span>
         </div>
       </div>
     </section>
 
-    <!-- ROUTINE -->
+    <!-- ROUTINE (connected steps) -->
     <section id="routine">
       <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Build your routine</h2>
-        </div>
-        <div class="steps">
+        <h2>Build your routine</h2>
+        <div class="steps" aria-label="Routine steps">
           <div class="step">
-            <div class="thumb"><img src="/img/as-yourself/cleanser.jpg" alt="Gentle cleanser" loading="lazy"></div>
+            <div class="num">1</div>
             <div>
-              <h3>1) Cleanse</h3>
-              <p class="muted">Start with a gentle gel cleanser to refresh without stripping.</p>
+              <h3>Cleanse</h3>
+              <p>Start with a gentle gel cleanser to refresh without stripping.</p>
             </div>
           </div>
           <div class="step">
-            <div class="thumb"><img src="/img/as-yourself/serum.jpg" alt="Hydrating serum" loading="lazy"></div>
+            <div class="num">2</div>
             <div>
-              <h3>2) Treat</h3>
-              <p class="muted">Layer a hydrating serum with niacinamide and HA.</p>
+              <h3>Treat</h3>
+              <p>Layer a hydrating serum with niacinamide and HA for bounce and clarity.</p>
             </div>
           </div>
           <div class="step">
-            <div class="thumb"><img src="/img/as-yourself/moisturizer.jpg" alt="Barrier moisturizer" loading="lazy"></div>
+            <div class="num">3</div>
             <div>
-              <h3>3) Protect</h3>
-              <p class="muted">Seal with a barrier-supporting moisturizer. AM: don’t forget SPF.</p>
+              <h3>Protect</h3>
+              <p>Seal with a barrier-supporting moisturizer. AM: always finish with SPF.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- OUR STORES (opcional) -->
+    <!-- OUR STORES (minimal / optional) -->
     <section id="group">
       <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Our Stores</h2>
-        </div>
-        <div class="brands">
-          <a class="store-card" href="https://life-style.pt" target="_blank" rel="noopener">
-            <div><img src="https://www.tcg-collectors.com/img/logos/3b.webp" width="200" height="200" alt="Life-Style"></div>
-            <div>
-              <h3>Life-Style</h3>
-              <p>Premium picks for home & wellness.</p>
-            </div>
+        <h2>Our Stores</h2>
+        <div class="brand-grid">
+          <a class="brand-link" href="https://life-style.pt" target="_blank" rel="noopener">
+            <span class="brand-logo"><img src="https://www.tcg-collectors.com/img/logos/3b.webp" width="200" height="200" alt="Life-Style"></span>
+            <span>Life-Style</span>
           </a>
-          <a class="store-card" href="https://www.tcg-collectors.com" target="_blank" rel="noopener">
-            <div><img src="https://www.tcg-collectors.com/img/logos/4w.webp" width="200" height="200" alt="TCG-Collectors"></div>
-            <div>
-              <h3>TCG-Collectors</h3>
-              <p>For TCG collectors.</p>
-            </div>
+          <a class="brand-link" href="https://www.tcg-collectors.com" target="_blank" rel="noopener">
+            <span class="brand-logo"><img src="https://www.tcg-collectors.com/img/logos/4w.webp" width="200" height="200" alt="TCG-Collectors"></span>
+            <span>TCG-Collectors</span>
           </a>
-          <a class="store-card" href="https://2play4fun.com" target="_blank" rel="noopener">
-            <div><img src="https://www.tcg-collectors.com/img/logos/7w.webp" width="200" height="200" alt="2Play4Fun"></div>
-            <div>
-              <h3>2Play4Fun</h3>
-              <p>Creative, educational toys.</p>
-            </div>
+          <a class="brand-link" href="https://2play4fun.com" target="_blank" rel="noopener">
+            <span class="brand-logo"><img src="https://www.tcg-collectors.com/img/logos/7w.webp" width="200" height="200" alt="2Play4Fun"></span>
+            <span>2Play4Fun</span>
           </a>
-          <a class="store-card" href="https://casual-vibes.com" target="_blank" rel="noopener">
-            <div><img src="https://www.tcg-collectors.com/img/logos/9b.webp" width="200" height="200" alt="Casual-Vibes"></div>
-            <div>
-              <h3>Casual-Vibes</h3>
-              <p>Light, versatile daily wear.</p>
-            </div>
+          <a class="brand-link" href="https://casual-vibes.com" target="_blank" rel="noopener">
+            <span class="brand-logo"><img src="https://www.tcg-collectors.com/img/logos/9b.webp" width="200" height="200" alt="Casual-Vibes"></span>
+            <span>Casual-Vibes</span>
           </a>
-          <a class="store-card" href="https://world-decor.com" target="_blank" rel="noopener">
-            <div><img src="https://www.tcg-collectors.com/img/logos/10b.webp" width="200" height="200" alt="World-Decor"></div>
-            <div>
-              <h3>World-Decor</h3>
-              <p>Decor with soul.</p>
-            </div>
+          <a class="brand-link" href="https://world-decor.com" target="_blank" rel="noopener">
+            <span class="brand-logo"><img src="https://www.tcg-collectors.com/img/logos/10b.webp" width="200" height="200" alt="World-Decor"></span>
+            <span>World-Decor</span>
           </a>
-          <a class="store-card" href="https://www.innovatech-zone.com" target="_blank" rel="noopener">
-            <div><img src="https://www.tcg-collectors.com/img/logos/11w.webp" width="200" height="200" alt="Innovatech Zone"></div>
-            <div>
-              <h3>Innovatech-Zone</h3>
-              <p>Smart technology and innovative solutions for your everyday life.</p>
-            </div>
+          <a class="brand-link" href="https://www.innovatech-zone.com" target="_blank" rel="noopener">
+            <span class="brand-logo"><img src="https://www.tcg-collectors.com/img/logos/11w.webp" width="200" height="200" alt="Innovatech Zone"></span>
+            <span>Innovatech Zone</span>
           </a>
         </div>
       </div>
     </section>
-  </main>
 
-  <footer>
-    <div class="container foot">
-      <div class="brand-wrap">
-        <span class="logo-tile" aria-hidden="true"></span>
-        <strong>As-Yourself</strong>
+    <footer>
+      <div class="container foot">
+        <div class="brand-row">
+          <span class="logo" aria-hidden="true"></span>
+          <strong>As-Yourself</strong>
+        </div>
+        <small>© <span id="year"></span> As-Yourself. All rights reserved.</small>
       </div>
-      <small>© <span id="year"></span> As-Yourself. All rights reserved.</small>
-    </div>
-  </footer>
+    </footer>
+  </div>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
