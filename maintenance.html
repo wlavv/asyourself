@@ -1,130 +1,431 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<link rel="icon" href="https://innovatech-zone.com/img/logos//favicon.ico" sizes="any">
-		<link rel="icon" type="image/png" href="https://innovatech-zone.com/img/logos//favicon.png" sizes="32x32">
-		<link rel="apple-touch-icon" href="https://innovatech-zone.com/img/logos//apple-touch-icon.png">
+  <title>As-Yourself — Simple, effective skincare</title>
+  <meta name="description" content="As-Yourself brings clean, effective skincare with conscious ingredients. Build your routine with gentle formulas for real results." />
 
-		<meta property="og:type" content="website">
-		<meta property="og:url" content="https://www.innovatech-zone.com/">
-		<meta property="og:title" content="Innovatech-Zone | Store under construction">
-		<meta property="og:description" content="We're building Innovatech-Zone. Meanwhile, explore our other stores for home, décor, fashion, beauty and toys.">
-		<meta property="og:image" content="https://www.innovatech-zone.com/logos/11w_1200x630.webp">
+  <!-- Open Graph -->
+  <meta property="og:title" content="As-Yourself — Simple, effective skincare" />
+  <meta property="og:description" content="Clean, effective skincare with conscious ingredients. Build your routine with gentle formulas for real results." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="As-Yourself" />
+  <meta property="og:image" content="https://www.as-yourself.com/img/as-yourself-og-1200x630.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="As-Yourself — Simple, effective skincare" />
+  <meta name="twitter:description" content="Clean, effective skincare with conscious ingredients." />
+  <meta name="twitter:image" content="https://www.as-yourself.com/img/as-yourself-og-1200x628.jpg" />
 
-		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:url" content="https://www.innovatech-zone.com/">
-		<meta name="twitter:title" content="Innovatech-Zone | Store under construction">
-		<meta name="twitter:description" content="We're building Innovatech-Zone. Meanwhile, explore our other stores for home, décor, fashion, beauty and toys.">
-		<meta name="twitter:image" content="https://www.innovatech-zone.com/logos/11w_1200x630.webp">
+  <link rel="canonical" href="https://www.as-yourself.com/" />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#ffffff" />
 
-		<title>Innovatech‑Zone | Store under construction</title>
-		<meta name="description" content="We're building Innovatech‑Zone. Meanwhile, explore our other stores for home, décor, fashion, beauty and toys."/>
-		<style>
-			:root{  --bg:#0B1020; --fg:#E5F4FF; --accent:#00E5FF; --muted:#9fb3c8; --grid:#132040; --glow:rgba(0,229,255,.12);
-			--display:"Orbitron", ui-sans-serif, system-ui, Segoe UI, Roboto, Arial; --text: ui-sans-serif, system-ui, Segoe UI, Roboto, Arial;  }
-			*{ box-sizing:border-box }
+  <!-- Favicons (troca pelos teus ficheiros) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-			 html,body{ min-height:100% }
-			 body{ 
-			  margin:0;
-			  font-family:var(--text);
-			  color:var(--fg);
-			  position:relative;                 
-			  background-color: var(--bg);       
-			 background-image:
-				linear-gradient(var(--grid) 1px, transparent 1px),
-				linear-gradient(90deg, var(--grid) 1px, transparent 1px),
-				radial-gradient(1200px 1200px at 70% 20%, var(--glow), transparent);
-			  background-size: 40px 40px, 40px 40px, auto;
-			  background-repeat: repeat, repeat, no-repeat;
-			  background-attachment: scroll, scroll, scroll; 
-			 }
+  <style>
+    :root{
+      /* Paleta suave / skincare */
+      --ink:#0e0f10;
+      --muted:#535861;
+      --paper:#ffffff;
+      --canvas:#fbfbfb;
+      --line:#eceef2;
 
-			header{ max-width:1140px; margin:auto; padding:18px 16px; display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:8px; text-align:center }
-			.logo{ font-family:var(--display); font-weight:800; letter-spacing:1.5px; font-size:2rem }
-			.hero{ max-width:800px; margin:60px auto; padding:0 16px; text-align:center }
-			.hero h1{ font-family:var(--display); font-size:clamp(28px,6vw,52px); margin:.5rem 0 }
-			.hero p{ max-width:60ch; margin:auto; font-size:1.1rem }
-			.stores{ max-width:1100px; margin:60px auto; padding:0 16px; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px }
-			.store-card{ background: rgba(255, 255, 255, 0.08);  border:1px solid #1f2b4d; border-radius:16px; padding:20px; backdrop-filter: blur(6px); text-align:center }
-			.store-card div{ width: 100%; }
-			.store-card h3{ margin:12px 0 8px; font-family:var(--display) }
-			.store-card p{ font-size:0.95rem; color:var(--muted) }
-			footer{ max-width:1140px; margin:44px auto 24px; padding:0 16px; text-align:center; color:#9fb3c8; font-size:14px }
-			@media(max-width:600px){ .logo{ font-size:1.5rem }.hero h1{ font-size:1.8rem } }
-			/* Stores grid */
-			.stores{ max-width:1140px; margin:8px auto 48px; padding:0 16px; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px }
-			.store-card{ background: rgba(255, 255, 255, 0.08);  border:1px solid #1f2b4d; border-radius:16px; padding:14px; text-decoration:none; color:var(--fg); display:inline-grid; gap:10px; align-items:center }
-			.store-card:hover{ border-color:var(--accent) }
-			.store-card svg{ flex:0 0 24px }
-			.store-card h3{ margin:0; font-size:24px }
-			.store-card p{ margin:2px 0 0; font-size:18px; color:var(--muted) }
-			@media(max-width:1024px){ .stores{ grid-template-columns:repeat(3,minmax(0,1fr)) } }
-			@media(max-width:640px){ .stores{ grid-template-columns:1fr } }
-			#stores{  text-align: center;  }
-			.sr-only{  position:absolute !important; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;  }
-		</style>
-	</head>
-	<body>
-		<main>
-			<section class="hero">
-				<div>
-					<h1 style="font-family:var(--display); font-size:clamp(28px,5vw,52px); margin:2.5rem 0">We're building Innovatech‑Zone</h1>
-					<p>Our tech store is under construction. <br>While we get everything ready, discover our other stores.</p>
-				</div>
-			</section>
-			<section id="stores" class="stores" aria-labelledby="stores-heading">
-				<h2 id="stores-heading" class="sr-only">Our other stores</h2>
-				<a class="store-card" href="https://life-style.pt" target="_blank">
-					<div><img src="https://dev.innovatech-zone.com/img/logos/3w.webp" width="200" height="200" title="Life Style"></div>
-					<div>
-						<h3>Life‑Style</h3>
-						<p>Premium picks for home, wellness and lifestyle.</p>
-					</div>
-				</a>
-				<a class="store-card" href="https://tcg-collectors.com" target="_blank">
-					<div><img src="https://dev.innovatech-zone.com/img/logos/4w.webp" width="200" height="200" title="TCG Collectors"></div>
-					<div>
-						<h3>TCG‑Collectors</h3>
-						<p>For TCG collectors and enthusiasts.</p>
-					</div>
-				</a>
-				<a class="store-card" href="https://2play4fun.com" target="_blank">
-					<div><img src="https://dev.innovatech-zone.com/img/logos/7w.webp" width="200" height="200" title="2 Play 4 Fun"></div>
-					<div>
-						<h3>2Play4Fun</h3>
-						<p>Creative, educational toys for all ages.</p>
-					</div>
-				</a>
-				<a class="store-card" href="https://as-yourself.com" target="_blank">
-					<div><img src="https://dev.innovatech-zone.com/img/logos/8w.webp" width="200" height="200" title="As Yourself"></div>
-					<div>
-						<h3>As‑Yourself</h3>
-						<p>Simple, effective skincare with conscious ingredients.</p>
-					</div>
-				</a>
-				<a class="store-card" href="https://casual-vibes.com" target="_blank">
-					<div><img src="https://dev.innovatech-zone.com/img/logos/9w.webp" width="200" height="200" title="Casual Vibes"></div>
-					<div>
-						<h3>Casual‑Vibes</h3>
-						<p>Light, versatile daily wear.</p>
-					</div>
-				</a>
-				<a class="store-card" href="https://world-decor.com" target="_blank">
-					<div><img src="https://dev.innovatech-zone.com/img/logos/10w.webp" width="200" height="200" title="World Decor"></div>
-					<div>
-						<h3>World‑Decor</h3>
-						<p>Decor with soul: wood, linen and ceramics.</p>
-					</div>
-				</a>
-			</section>
-		</main>
-		<footer>
-			<span>© <span id="y6"></span> Innovatech‑Zone</span>
-		</footer>
-		<script>document.getElementById('y6').textContent=new Date().getFullYear()</script>
-	</body>
+      --blush:#f3d7d2;      /* rosa claro */
+      --sage:#bdd9cc;       /* verde sálvia */
+      --sand:#f4eee7;       /* areia/bege de fundo */
+      --brandGrad: linear-gradient(90deg, var(--blush), var(--sage));
+
+      --radius:14px;
+      --shadow: 0 8px 24px rgba(12,14,22,.08);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:84px}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--canvas)}
+    .container{width:min(1160px,92vw);margin-inline:auto}
+
+    /* Header */
+    .topbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
+    .topbar .row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
+    .brand-wrap{display:flex;align-items:center;gap:12px}
+    .logo-tile{width:32px;height:32px;border-radius:9px;background:var(--brandGrad);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+    .brand{font-weight:900;letter-spacing:.2px}
+
+    .nav{display:flex;gap:8px;align-items:center}
+    .nav a{padding:.6rem .9rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:600;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+    .nav a:hover{border-color:#d9dde7}
+    .cta{border:2px solid transparent;background-image:var(--brandGrad);font-weight:800}
+
+    /* HERO — layout diferente: painel esquerdo com cartão, painel direito com mockup */
+    .hero{position:relative;background:radial-gradient(1200px 480px at 80% 10%, var(--sand), #fff 50%, #fff 100%)}
+    .hero-wrap{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:28px;padding:28px 0 10px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;position:relative;overflow:hidden}
+    .card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--brandGrad)}
+    .eyebrow{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .6rem;border-radius:999px;border:1px dashed #dcdfe8;background:#f6f8ff;color:#202532;font-weight:700}
+    h1{font-size:clamp(2rem,4vw,3.2rem);line-height:1.06;margin:.5rem 0 .6rem}
+    .lead{color:var(--muted);font-size:1.08rem;max-width:60ch}
+    .hero-ctas{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:18px}
+    .btn{display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 1.1rem;border-radius:10px;border:1px solid #121417;background:#121417;color:#fff;font-weight:800;line-height:1;text-decoration:none;transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;min-height:44px}
+    .btn.secondary{background:#fff;color:#0f1320;border:1px solid var(--line)}
+    .btn.secondary:hover{border-color:#cfd5e6;filter:brightness(1.02)}
+    .btn.primary{border:2px solid transparent;background-image:var(--brandGrad);background-origin:border-box;background-clip:padding-box,border-box;color:#101317;text-shadow:0 1px 0 rgba(255,255,255,.5)}
+
+    /* Mockup stack (direita) */
+    .mock{position:relative;min-height:460px}
+    .blob{position:absolute;width:280px;height:280px;border-radius:50%;filter:blur(30px);opacity:.6}
+    .blob.b1{background:var(--blush);top:12%;left:12%}
+    .blob.b2{background:var(--sage);top:36%;right:8%}
+    .bottle{position:absolute;right:10%;top:6%;width:min(380px,38vw);aspect-ratio:3/7;border-radius:26px;background:#fff;box-shadow:0 16px 40px rgba(12,14,22,.12);border:1px solid var(--line);overflow:hidden}
+    .bottle .cap{height:70px;background:#111318}
+    .bottle .label{height:100%;background:
+      linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,0) 20%),
+      radial-gradient(600px 220px at 50% -10%, var(--blush), transparent 60%),
+      radial-gradient(600px 220px at 60% 10%, var(--sage), transparent 60%),
+      #fff}
+    .badge-grid{position:absolute;bottom:0;left:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:12px;width:70%}
+    .badge{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-weight:700;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow)}
+
+    /* Features (3 colunas) */
+    section{padding:64px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:18px}
+    .section-title{font-size:1.6rem;margin:0}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .feature{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .feature::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--brandGrad)}
+    .feature h3{margin:.2rem 0 .35rem}
+    .muted{color:var(--muted)}
+
+    /* Routine steps (3 cartões horizontais) */
+    .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center;box-shadow:var(--shadow)}
+    .step .thumb{width:96px;height:96px;border-radius:12px;background:#f7f7f9;border:1px solid var(--line);overflow:hidden}
+    .step .thumb img{width:100%;height:100%;object-fit:cover}
+
+    /* Product highlights (cards 3x) */
+    .products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+    .product{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;display:grid}
+    .product .ph{aspect-ratio:4/3;background:#f6f7fb;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
+    .product .ph img{max-width:86%;max-height:86%;object-fit:contain}
+    .product .info{padding:14px 16px}
+    .price{font-weight:900}
+
+    /* Newsletter */
+    .nl{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center}
+    .nl form{display:flex;gap:10px}
+    .nl input[type=email]{flex:1;border:1px solid var(--line);border-radius:10px;padding:.9rem 1rem;font-size:1rem}
+    .nl button{border:2px solid transparent;border-radius:10px;padding:.9rem 1.1rem;font-weight:800;background-image:var(--brandGrad);cursor:pointer}
+
+    /* Our Stores (opcional) */
+    .brands{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+    .store-card{
+      background:#fff;border:1px dashed var(--line);border-radius:12px;display:flex;align-items:center;gap:12px;
+      padding:10px;min-height:84px;color:#0b1024;text-decoration:none;position:relative;overflow:hidden;box-shadow:var(--shadow)
+    }
+    .store-card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--brandGrad)}
+    .store-card > div:first-child{width:84px;height:84px;flex:0 0 84px;border-radius:12px;background:#f3f5fa;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden;
+      box-shadow: inset 6px 6px 12px rgba(0,0,0,.06), inset -6px -6px 12px rgba(255,255,255,.6)
+    }
+    .store-card > div:first-child img{width:100%;height:100%;object-fit:contain}
+    .store-card h3{margin:0;font-size:1rem}
+    .store-card p{margin:0;color:var(--muted);font-weight:600;font-size:.9rem}
+
+    footer{background:#fff;border-top:1px solid var(--line);padding:26px 0;color:#2a3044}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero-wrap{grid-template-columns:1fr}
+      .mock{min-height:360px}
+      .bottle{right:6%;top:8%;width:min(340px,60vw)}
+      .badge-grid{width:86%}
+      .feature-grid{grid-template-columns:1fr 1fr}
+      .steps{grid-template-columns:1fr}
+      .products{grid-template-columns:1fr 1fr}
+      .brands{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .nl{grid-template-columns:1fr}
+    }
+    @media (max-width:560px){
+      .feature-grid{grid-template-columns:1fr}
+      .products{grid-template-columns:1fr}
+      .brands{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .badge-grid{position:relative;grid-template-columns:1fr 1fr;width:100%;padding:0;margin-top:18px}
+    }
+
+    /* Safe areas */
+    .topbar .row{padding-left:calc(env(safe-area-inset-left) + 12px);padding-right:calc(env(safe-area-inset-right) + 12px)}
+  </style>
+</head>
+<body>
+  <!-- HEADER -->
+  <div class="topbar">
+    <div class="container row">
+      <div class="brand-wrap">
+        <span class="logo-tile" aria-hidden="true"></span>
+        <span class="brand">As-Yourself</span>
+      </div>
+      <nav class="nav" aria-label="Main">
+        <a href="#about">About</a>
+        <a href="#ingredients">Ingredients</a>
+        <a href="#routine">Routines</a>
+        <a class="cta" href="#newsletter">Subscribe</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container hero-wrap">
+      <div class="card">
+        <span class="eyebrow">✨ Clean • Conscious • Effective</span>
+        <h1>Skincare that fits your life, not the other way around.</h1>
+        <p class="lead">Gentle, effective formulas designed to calm, hydrate and protect. Build a routine that delivers real results — with ingredients you can trust.</p>
+        <div class="hero-ctas">
+          <a class="btn primary" href="#products">Shop Highlights</a>
+          <a class="btn secondary" href="#ingredients">See Ingredients</a>
+        </div>
+      </div>
+
+      <div class="mock" aria-hidden="true">
+        <div class="blob b1"></div>
+        <div class="blob b2"></div>
+        <div class="bottle">
+          <div class="cap"></div>
+          <div class="label"></div>
+        </div>
+        <div class="badge-grid">
+          <div class="badge">🌿 Conscious</div>
+          <div class="badge">🧪 Dermatologically tested</div>
+          <div class="badge">🐰 Cruelty-free</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- FEATURES -->
+    <section id="about">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Why As-Yourself</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature">
+            <h3>Clean, responsible</h3>
+            <p class="muted">Formulas free from unnecessary irritants. We focus on what works — and leave out the noise.</p>
+          </article>
+          <article class="feature">
+            <h3>Sensitive-skin friendly</h3>
+            <p class="muted">Lightweight textures with clinically-backed actives, balanced to be kind to your skin barrier.</p>
+          </article>
+          <article class="feature">
+            <h3>Transparent by design</h3>
+            <p class="muted">Clear labels, clear routines. Every ingredient has a purpose — and we tell you why.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- INGREDIENTS -->
+    <section id="ingredients">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Hero ingredients</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature">
+            <h3>Niacinamide</h3>
+            <p class="muted">Helps even tone and supports the skin barrier for a calmer look.</p>
+          </article>
+          <article class="feature">
+            <h3>Hyaluronic Acid</h3>
+            <p class="muted">Multi-weight hydration to plump and smooth without heaviness.</p>
+          </article>
+          <article class="feature">
+            <h3>Centella Asiatica</h3>
+            <p class="muted">Known to soothe redness and support recovery after stress.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROUTINE -->
+    <section id="routine">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Build your routine</h2>
+        </div>
+        <div class="steps">
+          <div class="step">
+            <div class="thumb"><img src="/img/as-yourself/cleanser.jpg" alt="Gentle cleanser" loading="lazy"></div>
+            <div>
+              <h3>1) Cleanse</h3>
+              <p class="muted">Start with a gentle gel cleanser to refresh without stripping.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="thumb"><img src="/img/as-yourself/serum.jpg" alt="Hydrating serum" loading="lazy"></div>
+            <div>
+              <h3>2) Treat</h3>
+              <p class="muted">Layer a hydrating serum with niacinamide and HA.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="thumb"><img src="/img/as-yourself/moisturizer.jpg" alt="Barrier moisturizer" loading="lazy"></div>
+            <div>
+              <h3>3) Protect</h3>
+              <p class="muted">Seal with a barrier-supporting moisturizer. AM: don’t forget SPF.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section id="products">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Highlights</h2>
+        </div>
+        <div class="products">
+          <article class="product">
+            <div class="ph"><img src="/img/as-yourself/prod-cleanser.png" alt="As-Yourself Gentle Cleanser" loading="lazy"></div>
+            <div class="info">
+              <h3>Gentle Gel Cleanser</h3>
+              <p class="muted">Cleanses without tightness. pH-balanced.</p>
+              <div class="price">€14.90</div>
+            </div>
+          </article>
+          <article class="product">
+            <div class="ph"><img src="/img/as-yourself/prod-serum.png" alt="As-Yourself Hydrating Serum" loading="lazy"></div>
+            <div class="info">
+              <h3>Hydrating Serum</h3>
+              <p class="muted">Niacinamide + HA. Lightweight, fast-absorbing.</p>
+              <div class="price">€19.90</div>
+            </div>
+          </article>
+          <article class="product">
+            <div class="ph"><img src="/img/as-yourself/prod-moisturizer.png" alt="As-Yourself Barrier Moisturizer" loading="lazy"></div>
+            <div class="info">
+              <h3>Barrier Moisturizer</h3>
+              <p class="muted">Ceramide-rich cream for lasting comfort.</p>
+              <div class="price">€22.90</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section id="newsletter">
+      <div class="container">
+        <div class="nl">
+          <div>
+            <h2 style="margin:.2rem 0 .4rem">Get early access</h2>
+            <p class="muted">We’re preparing our first drop. Join the list for early access and launch perks.</p>
+          </div>
+          <form onsubmit="return subscribe(event)" aria-label="Subscribe for updates">
+            <label class="sr-only" for="email">Email</label>
+            <input id="email" type="email" placeholder="you@example.com" required />
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+        <p id="sub-msg" style="display:none;margin:.6rem 0 0;font-weight:700">Thanks! You’re on the list.</p>
+      </div>
+    </section>
+
+    <!-- OUR STORES (opcional; podes remover) -->
+    <section id="group">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title">Our Stores</h2>
+        </div>
+        <div class="brands">
+          <a class="store-card" href="https://as-yourself.com" target="_blank" rel="noopener">
+            <div><img src="https://www.tcg-collectors.com/img/logos/8w.webp" width="200" height="200" alt="As-Yourself"></div>
+            <div>
+              <h3>As-Yourself</h3>
+              <p>Simple, effective skincare.</p>
+            </div>
+          </a>
+          <a class="store-card" href="https://life-style.pt" target="_blank" rel="noopener">
+            <div><img src="https://www.tcg-collectors.com/img/logos/3b.webp" width="200" height="200" alt="Life-Style"></div>
+            <div>
+              <h3>Life-Style</h3>
+              <p>Premium picks for home & wellness.</p>
+            </div>
+          </a>
+          <a class="store-card" href="https://2play4fun.com" target="_blank" rel="noopener">
+            <div><img src="https://www.tcg-collectors.com/img/logos/7w.webp" width="200" height="200" alt="2Play4Fun"></div>
+            <div>
+              <h3>2Play4Fun</h3>
+              <p>Creative, educational toys.</p>
+            </div>
+          </a>
+          <a class="store-card" href="https://casual-vibes.com" target="_blank" rel="noopener">
+            <div><img src="https://www.tcg-collectors.com/img/logos/9b.webp" width="200" height="200" alt="Casual-Vibes"></div>
+            <div>
+              <h3>Casual-Vibes</h3>
+              <p>Light, versatile daily wear.</p>
+            </div>
+          </a>
+          <a class="store-card" href="https://world-decor.com" target="_blank" rel="noopener">
+            <div><img src="https://www.tcg-collectors.com/img/logos/10b.webp" width="200" height="200" alt="World-Decor"></div>
+            <div>
+              <h3>World-Decor</h3>
+              <p>Decor with soul.</p>
+            </div>
+          </a>
+          <a class="store-card" href="https://www.tcg-collectors.com" target="_blank" rel="noopener">
+            <div><img src="https://www.tcg-collectors.com/img/logos/4w.webp" width="200" height="200" alt="TCG-Collectors"></div>
+            <div>
+              <h3>TCG-Collectors</h3>
+              <p>For TCG collectors.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="logo-tile" aria-hidden="true" style="width:24px;height:24px;border-radius:7px"></span>
+        <strong>As-Yourself</strong>
+      </div>
+      <small>© <span id="year"></span> As-Yourself. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script>
+    // Accessibility: visually-hidden utility for the form label
+    (function(){
+      const style = document.createElement('style');
+      style.innerHTML = `.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}`;
+      document.head.appendChild(style);
+    })();
+
+    // Year + simple subscribe feedback (front-end only)
+    document.getElementById('year').textContent = new Date().getFullYear();
+    function subscribe(e){
+      if(e && e.preventDefault) e.preventDefault();
+      const input = document.getElementById('email');
+      const msg = document.getElementById('sub-msg');
+      if(input && input.reportValidity()){
+        if(msg){ msg.style.display = 'block'; msg.scrollIntoView({behavior:'smooth', block:'nearest'}); }
+        input.value = '';
+      }
+      return false;
+    }
+  </script>
+</body>
 </html>
