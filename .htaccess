@@ -3,27 +3,50 @@
 # ----------------------------------------------------------------------
 RewriteEngine On
 
-# Se não for HTTPS ou não tiver www, redireciona
+# Se não for HTTPS, redireciona para https://www.as-yourself.com
 RewriteCond %{HTTPS} !=on [OR]
 RewriteCond %{HTTP:X-Forwarded-Proto} !https [NC]
 RewriteRule ^ https://www.as-yourself.com%{REQUEST_URI} [R=301,L]
 
+# Se não tiver www, redireciona para https://www.as-yourself.com
 RewriteCond %{HTTP_HOST} !^www\.as-yourself\.com$ [NC]
 RewriteRule ^ https://www.as-yourself.com%{REQUEST_URI} [R=301,L]
 
 # ----------------------------------------------------------------------
 # Landing page durante manutenção (200 OK)
 # ----------------------------------------------------------------------
-# Permitir acesso ao back-office (troca adminXYZ pela tua pasta real)
-RewriteRule ^adminXYZ/ - [L]
 
-# Permitir assets da landing
+# Permitir acesso ao back-office (troca adminXYZ pela tua pasta real)
+RewriteRule ^admin/ - [L]
+
+# EXCEÇÕES IMPORTANTES (ficheiros estáticos que não devem ser reescritos)
+# robots.txt / sitemap.xml / ads.txt / security.txt / humans.txt
+RewriteRule ^robots\.txt$ - [L,NC]
+RewriteRule ^sitemap\.xml$ - [L,NC]
+RewriteRule ^(ads\.txt|security\.txt|humans\.txt)$ - [L,NC]
+
+# Permitir assets da landing (ficheiros estáticos e a própria maintenance.html)
 RewriteCond %{REQUEST_URI} ^/(maintenance\.html|assets/|css/|js/|img/|fonts/) [NC]
 RewriteRule ^ - [L]
 
 # Tudo o resto mostra a landing (200 OK)
 # (alvo relativo, sem barra inicial)
 RewriteRule ^.*$ maintenance.html [L]
+
+# ----------------------------------------------------------------------
+# MIME e cache específica para robots.txt
+# ----------------------------------------------------------------------
+<IfModule mod_mime.c>
+  AddType text/plain .txt
+</IfModule>
+
+<IfModule mod_headers.c>
+  <Files "robots.txt">
+    Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header set Expires "0"
+  </Files>
+</IfModule>
 
 # ----------------------------------------------------------------------
 # Segurança básica
