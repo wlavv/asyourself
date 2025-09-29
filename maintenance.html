@@ -63,12 +63,12 @@
 
     /* ===== Header (logo + dev pill à direita do logo) ===== */
     .site-head{padding:18px 0}
-    .brand-row{display:flex;align-items:center;gap:10px}
+    .brand-row{display:flex;align-items:center;gap:10px;float: left;}
     .logo{width:28px;height:28px;border-radius:9px;background:var(--accent-grad);box-shadow:0 0 1px rgba(0,0,0,.15),0 10px 24px rgba(203,189,255,.35)}
     .brand{font-weight:900}
     .dev-pill{
       margin-left:6px;display:inline-flex;align-items:center;gap:.45rem;padding:.38rem .6rem;border-radius:999px;
-      background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.06);
+      background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.06);float: right;
       font-weight:800;color:#3a2f47;white-space:nowrap
     }
 
@@ -118,7 +118,7 @@
     .store{display:grid;justify-items:center;text-align:center;gap:10px;text-decoration:none;color:inherit;opacity:0;transform:translateY(10px);transition:500ms ease}
     .store.reveal-in{opacity:1;transform:none}
     .orb{position:relative;width:120px;height:120px;border-radius:999px;background:linear-gradient(180deg,#fff,rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.06);display:grid;place-items:center;box-shadow:0 12px 36px rgba(203,189,255,.25);overflow:hidden;transition:transform .18s ease}
-    .orb::before{content:"";position:absolute;inset:-8px;border-radius:inherit;background:var(--accent-grad);-webkit-mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 8px), #000 calc(50% - 7px));mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 8px), #000 calc(50% - 7px));filter:blur(.8px);opacity:.9}
+    .orb::before{content:"";position:absolute;inset:-30px;border-radius:inherit;background:var(--accent-grad);-webkit-mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 8px), #000 calc(50% - 7px));mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 8px), #000 calc(50% - 7px));filter:blur(.8px);opacity:.9}
     .store img{width:82%;height:82%;object-fit:contain}
     .store h3{margin:.2rem 0 0;font-size:1.02rem}
     .store small{color:var(--muted)}
@@ -148,8 +148,8 @@
         <div class="brand-row">
           <span class="logo" aria-hidden="true"></span>
           <strong class="brand">As-Yourself</strong>
-          <span class="dev-pill">🚧 In development • Early access soon</span>
         </div>
+	    <span class="dev-pill">🚧 In development • Early access soon</span>
       </div>
     </header>
 
