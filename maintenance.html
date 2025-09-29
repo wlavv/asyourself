@@ -26,113 +26,148 @@
   <meta name="robots" content="index,follow,max-image-preview:large" />
   <meta name="theme-color" content="#ffffff" />
 
-  <!-- Favicons (troca pelos teus ficheiros) -->
+  <!-- Favicons -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
   <style>
     :root{
-      /* Paleta suave / skincare */
-      --ink:#0e0f10;
-      --muted:#535861;
-      --paper:#ffffff;
-      --canvas:#fbfbfb;
-      --line:#eceef2;
+      /* Paleta neutra (bege/oliva) */
+      --ink:#151614;               /* texto principal */
+      --muted:#5f645b;             /* texto secundário (acinzentado esverdeado) */
+      --paper:#ffffff;             /* cartões */
+      --canvas:#f7f4ed;            /* fundo quente (linen) */
+      --line:#e7e2d7;              /* linhas/bordas leves */
 
-      --blush:#f3d7d2;      /* rosa claro */
-      --sage:#bdd9cc;       /* verde sálvia */
-      --sand:#f4eee7;       /* areia/bege de fundo */
-      --brandGrad: linear-gradient(90deg, var(--blush), var(--sage));
+      --olive:#7f8f73;
+      --sage:#aebb9f;
+      --oat:#efe7d8;
+      --brandGrad: linear-gradient(90deg, var(--oat), var(--sage));
 
-      --radius:14px;
-      --shadow: 0 8px 24px rgba(12,14,22,.08);
+      --radius:16px;
+      --shadow: 0 10px 28px rgba(20,22,16,.08);
     }
 
     *{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:84px}
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--canvas)}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(1200px 420px at 80% 0%, #f3efe7 0%, transparent 50%),
+        var(--canvas);
+    }
     .container{width:min(1160px,92vw);margin-inline:auto}
 
-    /* Header */
-    .topbar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line)}
-    .topbar .row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0}
-    .brand-wrap{display:flex;align-items:center;gap:12px}
-    .logo-tile{width:32px;height:32px;border-radius:9px;background:var(--brandGrad);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
+    /* Cabeçalho minimal (sem nav) */
+    .site-head{
+      background:transparent;
+      padding:18px 0 6px;
+    }
+    .head-row{
+      display:flex;align-items:center;justify-content:flex-start;gap:12px
+    }
+    .logo-tile{width:28px;height:28px;border-radius:8px;background:var(--brandGrad);box-shadow:inset 0 0 0 1px rgba(0,0,0,.06)}
     .brand{font-weight:900;letter-spacing:.2px}
 
-    .nav{display:flex;gap:8px;align-items:center}
-    .nav a{padding:.6rem .9rem;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:600;text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
-    .nav a:hover{border-color:#d9dde7}
-    .cta{border:2px solid transparent;background-image:var(--brandGrad);font-weight:800}
-
-    /* HERO — layout diferente: painel esquerdo com cartão, painel direito com mockup */
-    .hero{position:relative;background:radial-gradient(1200px 480px at 80% 10%, var(--sand), #fff 50%, #fff 100%)}
-    .hero-wrap{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:28px;padding:28px 0 10px}
-    .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;position:relative;overflow:hidden}
-    .card::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:var(--brandGrad)}
-    .eyebrow{display:inline-flex;align-items:center;gap:.5rem;padding:.35rem .6rem;border-radius:999px;border:1px dashed #dcdfe8;background:#f6f8ff;color:#202532;font-weight:700}
-    h1{font-size:clamp(2rem,4vw,3.2rem);line-height:1.06;margin:.5rem 0 .6rem}
+    /* HERO clean (duas colunas mas com muito ar) */
+    .hero{position:relative}
+    .hero-wrap{
+      display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:32px;
+      padding:34px 0 10px;
+    }
+    .card{
+      background:var(--paper);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:28px;
+      position:relative;overflow:hidden
+    }
+    .card::before{
+      content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--brandGrad)
+    }
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:.5rem;
+      padding:.35rem .6rem;border-radius:999px;border:1px solid var(--line);
+      background:#faf8f3;color:#23261f;font-weight:700
+    }
+    h1{font-size:clamp(2rem,4vw,3.1rem);line-height:1.08;margin:.55rem 0 .65rem}
     .lead{color:var(--muted);font-size:1.08rem;max-width:60ch}
     .hero-ctas{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:18px}
-    .btn{display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 1.1rem;border-radius:10px;border:1px solid #121417;background:#121417;color:#fff;font-weight:800;line-height:1;text-decoration:none;transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;min-height:44px}
-    .btn.secondary{background:#fff;color:#0f1320;border:1px solid var(--line)}
-    .btn.secondary:hover{border-color:#cfd5e6;filter:brightness(1.02)}
-    .btn.primary{border:2px solid transparent;background-image:var(--brandGrad);background-origin:border-box;background-clip:padding-box,border-box;color:#101317;text-shadow:0 1px 0 rgba(255,255,255,.5)}
+    .btn{
+      display:inline-flex;align-items:center;gap:.55rem;padding:.9rem 1.1rem;border-radius:12px;
+      border:1px solid #222;background:#222;color:#fff;font-weight:800;text-decoration:none;
+      transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;min-height:44px
+    }
+    .btn.secondary{background:#fff;color:#151a12;border:1px solid var(--line)}
+    .btn.secondary:hover{filter:brightness(1.02);border-color:#dcd6c9}
+    .btn.primary{
+      border:2px solid transparent;background-image:var(--brandGrad);
+      background-origin:border-box;background-clip:padding-box,border-box;color:#0f140d
+    }
 
-    /* Mockup stack (direita) */
-    .mock{position:relative;min-height:460px}
-    .blob{position:absolute;width:280px;height:280px;border-radius:50%;filter:blur(30px);opacity:.6}
-    .blob.b1{background:var(--blush);top:12%;left:12%}
-    .blob.b2{background:var(--sage);top:36%;right:8%}
-    .bottle{position:absolute;right:10%;top:6%;width:min(380px,38vw);aspect-ratio:3/7;border-radius:26px;background:#fff;box-shadow:0 16px 40px rgba(12,14,22,.12);border:1px solid var(--line);overflow:hidden}
-    .bottle .cap{height:70px;background:#111318}
-    .bottle .label{height:100%;background:
-      linear-gradient(180deg, rgba(0,0,0,.04), rgba(0,0,0,0) 20%),
-      radial-gradient(600px 220px at 50% -10%, var(--blush), transparent 60%),
-      radial-gradient(600px 220px at 60% 10%, var(--sage), transparent 60%),
-      #fff}
-    .badge-grid{position:absolute;bottom:0;left:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:12px;width:70%}
-    .badge{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-weight:700;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow)}
+    /* Mock simples (sem blobs coloridos gritantes) */
+    .mock{position:relative;min-height:420px}
+    .bottle{
+      position:absolute;right:6%;top:4%;
+      width:min(360px,40vw);aspect-ratio:3/7;border-radius:26px;
+      background:#fff;border:1px solid var(--line);box-shadow:0 16px 40px rgba(20,22,16,.10);overflow:hidden
+    }
+    .bottle .cap{height:70px;background:#30352c}
+    .bottle .label{
+      height:100%;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,0) 20%),
+        radial-gradient(700px 220px at 60% 0%, rgba(126,143,115,.18), transparent 60%),
+        radial-gradient(700px 220px at 40% 10%, rgba(239,231,216,.35), transparent 60%),
+        #fff
+    }
+    .badge-grid{
+      position:absolute;bottom:0;left:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;padding:12px;width:72%
+    }
+    .badge{
+      background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+      font-weight:700;display:flex;align-items:center;gap:8px;box-shadow:var(--shadow)
+    }
 
-    /* Features (3 colunas) */
-    section{padding:64px 0}
-    .section-head{display:flex;align-items:end;justify-content:space-between;gap:12px;margin-bottom:18px}
-    .section-title{font-size:1.6rem;margin:0}
+    /* Secções */
+    section{padding:60px 0}
+    .section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:18px}
+    .section-title{font-size:1.55rem;margin:0}
+
+    /* Features 3 colunas */
     .feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    .feature{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 18px 16px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+    .feature{
+      background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px 18px 16px;
+      box-shadow:var(--shadow);position:relative;overflow:hidden
+    }
     .feature::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--brandGrad)}
     .feature h3{margin:.2rem 0 .35rem}
     .muted{color:var(--muted)}
 
-    /* Routine steps (3 cartões horizontais) */
+    /* Routine (3 cartões horizontais) */
     .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center;box-shadow:var(--shadow)}
-    .step .thumb{width:96px;height:96px;border-radius:12px;background:#f7f7f9;border:1px solid var(--line);overflow:hidden}
+    .step{
+      background:#fff;border:1px solid var(--line);border-radius:16px;padding:16px;
+      display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center;box-shadow:var(--shadow)
+    }
+    .step .thumb{width:96px;height:96px;border-radius:12px;background:#f6f4ef;border:1px solid var(--line);overflow:hidden}
     .step .thumb img{width:100%;height:100%;object-fit:cover}
 
-    /* Product highlights (cards 3x) */
-    .products{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-    .product{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);overflow:hidden;display:grid}
-    .product .ph{aspect-ratio:4/3;background:#f6f7fb;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:center}
-    .product .ph img{max-width:86%;max-height:86%;object-fit:contain}
-    .product .info{padding:14px 16px}
-    .price{font-weight:900}
-
-    /* Newsletter */
-    .nl{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow);display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center}
-    .nl form{display:flex;gap:10px}
-    .nl input[type=email]{flex:1;border:1px solid var(--line);border-radius:10px;padding:.9rem 1rem;font-size:1rem}
-    .nl button{border:2px solid transparent;border-radius:10px;padding:.9rem 1.1rem;font-weight:800;background-image:var(--brandGrad);cursor:pointer}
-
-    /* Our Stores (opcional) */
+    /* Stores */
     .brands{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
     .store-card{
-      background:#fff;border:1px dashed var(--line);border-radius:12px;display:flex;align-items:center;gap:12px;
+      background:#fff;border:1px dashed var(--line);border-radius:14px;display:flex;align-items:center;gap:12px;
       padding:10px;min-height:84px;color:#0b1024;text-decoration:none;position:relative;overflow:hidden;box-shadow:var(--shadow)
     }
     .store-card::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--brandGrad)}
-    .store-card > div:first-child{width:84px;height:84px;flex:0 0 84px;border-radius:12px;background:#f3f5fa;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;overflow:hidden;
+    .store-card > div:first-child{
+      width:84px;height:84px;flex:0 0 84px;border-radius:12px;background:#f3f1ec;border:1px solid var(--line);
+      display:flex;align-items:center;justify-content:center;overflow:hidden;
       box-shadow: inset 6px 6px 12px rgba(0,0,0,.06), inset -6px -6px 12px rgba(255,255,255,.6)
     }
     .store-card > div:first-child img{width:100%;height:100%;object-fit:contain}
@@ -141,62 +176,46 @@
 
     footer{background:#fff;border-top:1px solid var(--line);padding:26px 0;color:#2a3044}
 
-    /* Responsive */
+    /* Responsivo */
     @media (max-width:980px){
       .hero-wrap{grid-template-columns:1fr}
       .mock{min-height:360px}
-      .bottle{right:6%;top:8%;width:min(340px,60vw)}
-      .badge-grid{width:86%}
+      .bottle{right:6%;top:8%;width:min(320px,66vw)}
+      .badge-grid{width:90%}
       .feature-grid{grid-template-columns:1fr 1fr}
       .steps{grid-template-columns:1fr}
-      .products{grid-template-columns:1fr 1fr}
       .brands{grid-template-columns:repeat(3,minmax(0,1fr))}
-      .nl{grid-template-columns:1fr}
     }
     @media (max-width:560px){
       .feature-grid{grid-template-columns:1fr}
-      .products{grid-template-columns:1fr}
       .brands{grid-template-columns:repeat(2,minmax(0,1fr))}
       .badge-grid{position:relative;grid-template-columns:1fr 1fr;width:100%;padding:0;margin-top:18px}
     }
-
-    /* Safe areas */
-    .topbar .row{padding-left:calc(env(safe-area-inset-left) + 12px);padding-right:calc(env(safe-area-inset-right) + 12px)}
   </style>
 </head>
 <body>
-  <!-- HEADER -->
-  <div class="topbar">
-    <div class="container row">
-      <div class="brand-wrap">
-        <span class="logo-tile" aria-hidden="true"></span>
-        <span class="brand">As-Yourself</span>
-      </div>
-      <nav class="nav" aria-label="Main">
-        <a href="#about">About</a>
-        <a href="#ingredients">Ingredients</a>
-        <a href="#routine">Routines</a>
-        <a class="cta" href="#newsletter">Subscribe</a>
-      </nav>
+  <!-- Header minimal (sem navegação) -->
+  <header class="site-head">
+    <div class="container head-row">
+      <span class="logo-tile" aria-hidden="true"></span>
+      <span class="brand">As-Yourself</span>
     </div>
-  </div>
+  </header>
 
   <!-- HERO -->
-  <header class="hero">
+  <section class="hero">
     <div class="container hero-wrap">
       <div class="card">
         <span class="eyebrow">✨ Clean • Conscious • Effective</span>
         <h1>Skincare that fits your life, not the other way around.</h1>
         <p class="lead">Gentle, effective formulas designed to calm, hydrate and protect. Build a routine that delivers real results — with ingredients you can trust.</p>
         <div class="hero-ctas">
-          <a class="btn primary" href="#products">Shop Highlights</a>
-          <a class="btn secondary" href="#ingredients">See Ingredients</a>
+          <a class="btn primary" href="#about">Learn more</a>
+          <a class="btn secondary" href="#routine">See routine</a>
         </div>
       </div>
 
       <div class="mock" aria-hidden="true">
-        <div class="blob b1"></div>
-        <div class="blob b2"></div>
         <div class="bottle">
           <div class="cap"></div>
           <div class="label"></div>
@@ -208,7 +227,7 @@
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
   <main>
     <!-- FEATURES -->
@@ -289,78 +308,25 @@
       </div>
     </section>
 
-    <!-- PRODUCTS -->
-    <section id="products">
-      <div class="container">
-        <div class="section-head">
-          <h2 class="section-title">Highlights</h2>
-        </div>
-        <div class="products">
-          <article class="product">
-            <div class="ph"><img src="/img/as-yourself/prod-cleanser.png" alt="As-Yourself Gentle Cleanser" loading="lazy"></div>
-            <div class="info">
-              <h3>Gentle Gel Cleanser</h3>
-              <p class="muted">Cleanses without tightness. pH-balanced.</p>
-              <div class="price">€14.90</div>
-            </div>
-          </article>
-          <article class="product">
-            <div class="ph"><img src="/img/as-yourself/prod-serum.png" alt="As-Yourself Hydrating Serum" loading="lazy"></div>
-            <div class="info">
-              <h3>Hydrating Serum</h3>
-              <p class="muted">Niacinamide + HA. Lightweight, fast-absorbing.</p>
-              <div class="price">€19.90</div>
-            </div>
-          </article>
-          <article class="product">
-            <div class="ph"><img src="/img/as-yourself/prod-moisturizer.png" alt="As-Yourself Barrier Moisturizer" loading="lazy"></div>
-            <div class="info">
-              <h3>Barrier Moisturizer</h3>
-              <p class="muted">Ceramide-rich cream for lasting comfort.</p>
-              <div class="price">€22.90</div>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- NEWSLETTER -->
-    <section id="newsletter">
-      <div class="container">
-        <div class="nl">
-          <div>
-            <h2 style="margin:.2rem 0 .4rem">Get early access</h2>
-            <p class="muted">We’re preparing our first drop. Join the list for early access and launch perks.</p>
-          </div>
-          <form onsubmit="return subscribe(event)" aria-label="Subscribe for updates">
-            <label class="sr-only" for="email">Email</label>
-            <input id="email" type="email" placeholder="you@example.com" required />
-            <button type="submit">Subscribe</button>
-          </form>
-        </div>
-        <p id="sub-msg" style="display:none;margin:.6rem 0 0;font-weight:700">Thanks! You’re on the list.</p>
-      </div>
-    </section>
-
-    <!-- OUR STORES (opcional; podes remover) -->
+    <!-- OUR STORES -->
     <section id="group">
       <div class="container">
         <div class="section-head">
           <h2 class="section-title">Our Stores</h2>
         </div>
         <div class="brands">
-          <a class="store-card" href="https://as-yourself.com" target="_blank" rel="noopener">
-            <div><img src="https://www.tcg-collectors.com/img/logos/8w.webp" width="200" height="200" alt="As-Yourself"></div>
-            <div>
-              <h3>As-Yourself</h3>
-              <p>Simple, effective skincare.</p>
-            </div>
-          </a>
           <a class="store-card" href="https://life-style.pt" target="_blank" rel="noopener">
             <div><img src="https://www.tcg-collectors.com/img/logos/3b.webp" width="200" height="200" alt="Life-Style"></div>
             <div>
               <h3>Life-Style</h3>
               <p>Premium picks for home & wellness.</p>
+            </div>
+          </a>
+          <a class="store-card" href="https://www.tcg-collectors.com" target="_blank" rel="noopener">
+            <div><img src="https://www.tcg-collectors.com/img/logos/4w.webp" width="200" height="200" alt="TCG-Collectors"></div>
+            <div>
+              <h3>TCG-Collectors</h3>
+              <p>For TCG collectors.</p>
             </div>
           </a>
           <a class="store-card" href="https://2play4fun.com" target="_blank" rel="noopener">
@@ -384,11 +350,11 @@
               <p>Decor with soul.</p>
             </div>
           </a>
-          <a class="store-card" href="https://www.tcg-collectors.com" target="_blank" rel="noopener">
-            <div><img src="https://www.tcg-collectors.com/img/logos/4w.webp" width="200" height="200" alt="TCG-Collectors"></div>
+          <a class="store-card" href="https://www.innovatech-zone.com" target="_blank" rel="noopener">
+            <div><img src="https://www.tcg-collectors.com/img/logos/11w.webp" width="200" height="200" alt="Innovatech Zone"></div>
             <div>
-              <h3>TCG-Collectors</h3>
-              <p>For TCG collectors.</p>
+              <h3>As-Yourself</h3>
+              <p>Simple, effective skincare.</p>
             </div>
           </a>
         </div>
@@ -407,25 +373,7 @@
   </footer>
 
   <script>
-    // Accessibility: visually-hidden utility for the form label
-    (function(){
-      const style = document.createElement('style');
-      style.innerHTML = `.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}`;
-      document.head.appendChild(style);
-    })();
-
-    // Year + simple subscribe feedback (front-end only)
     document.getElementById('year').textContent = new Date().getFullYear();
-    function subscribe(e){
-      if(e && e.preventDefault) e.preventDefault();
-      const input = document.getElementById('email');
-      const msg = document.getElementById('sub-msg');
-      if(input && input.reportValidity()){
-        if(msg){ msg.style.display = 'block'; msg.scrollIntoView({behavior:'smooth', block:'nearest'}); }
-        input.value = '';
-      }
-      return false;
-    }
   </script>
 </body>
 </html>
