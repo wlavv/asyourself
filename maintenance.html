@@ -61,19 +61,19 @@
     }
     @keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(0,-2vh,0) scale(1.03)}}
 
-    /* ===== Header (logo + dev pill à direita do logo) ===== */
+    /* ===== Header (logo + dev pill) ===== */
     .site-head{padding:18px 0}
-    .brand-row{display:flex;align-items:center;gap:10px;float: left;}
+    .brand-row{display:flex;align-items:center;gap:10px}
     .logo{width:28px;height:28px;border-radius:9px;background:var(--accent-grad);box-shadow:0 0 1px rgba(0,0,0,.15),0 10px 24px rgba(203,189,255,.35)}
     .brand{font-weight:900}
     .dev-pill{
       margin-left:6px;display:inline-flex;align-items:center;gap:.45rem;padding:.38rem .6rem;border-radius:999px;
-      background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.06);float: right;
+      background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.06);
       font-weight:800;color:#3a2f47;white-space:nowrap
     }
 
     /* ===== Hero ===== */
-    .hero{padding:38px 0 20px}
+    .hero{padding:38px 0 24px}
     .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
     .eyebrow{display:inline-flex;gap:.5rem;align-items:center;padding:.42rem .7rem;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.05);font-weight:800;color:#3a2f47}
     .lead{max-width:62ch}
@@ -83,13 +83,34 @@
     .btn.primary:hover{transform:translateY(-1px);filter:saturate(1.04) brightness(1.02)}
     .btn.ghost{color:#1b1622;border:1px solid rgba(0,0,0,.06);background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.6));backdrop-filter:blur(8px)}
     .btn.ghost:hover{transform:translateY(-1px)}
-    .ribbons{position:relative;min-height:500px}
-    .ribbons::before,.ribbons::after{content:"";position:absolute;inset:0;background:conic-gradient(from 210deg,rgba(255,191,228,.5),rgba(203,189,255,.5),rgba(255,214,179,.45),transparent 70%);filter:blur(22px);opacity:.9;border-radius:60px;transform:rotate(-6deg);animation:breathe 14s ease-in-out infinite;mix-blend-mode:screen}
+
+    /* Right artwork: ribbons + floating glass pills */
+    .hero-art{position:relative;min-height:500px}
+    .ribbons{position:absolute;inset:0;border-radius:60px;overflow:hidden}
+    .ribbons::before,.ribbons::after{
+      content:"";position:absolute;inset:0;background:conic-gradient(from 210deg,rgba(255,191,228,.5),rgba(203,189,255,.5),rgba(255,214,179,.45),transparent 70%);
+      filter:blur(22px);opacity:.9;transform:rotate(-6deg);animation:breathe 14s ease-in-out infinite;mix-blend-mode:screen
+    }
     .ribbons::after{inset:10% 0 0 10%;filter:blur(30px);opacity:.6;transform:rotate(6deg);animation-duration:18s}
     @keyframes breathe{0%,100%{transform:translateY(0) rotate(var(--angle,-6deg))}50%{transform:translateY(-8px) rotate(var(--angle,-6deg))}}
+
+    .float-pills{position:absolute;right:2vw;top:6%;display:grid;gap:14px}
+    .glass-pill{
+      padding:.7rem 1rem;border-radius:999px;
+      background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.7));
+      border:1px solid rgba(0,0,0,.06);
+      box-shadow:0 10px 30px rgba(203,189,255,.25);
+      backdrop-filter:blur(8px) saturate(1.1);
+      font-weight:800;color:#392d4a;white-space:nowrap;opacity:.96;
+      animation:floatY 7s ease-in-out infinite;
+    }
+    .glass-pill:nth-child(2){animation-duration:8.5s;animation-delay:.2s}
+    .glass-pill:nth-child(3){animation-duration:9.5s;animation-delay:.4s}
+    @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
     .sep{height:1px;background:linear-gradient(90deg,transparent,var(--hairline),transparent)}
 
-    /* ===== Why (text-only, no boxes) ===== */
+    /* ===== Why (text-only) ===== */
     section{padding:64px 0}
     .why-list{display:grid;gap:14px;margin-top:10px}
     .why-item{display:grid;grid-template-columns:28px 1fr;align-items:start;gap:10px;padding:10px 0;border-bottom:1px dashed rgba(0,0,0,.06);opacity:0;transform:translateY(10px);transition:600ms ease}
@@ -110,7 +131,7 @@
     .num{width:28px;height:28px;margin-left:.15rem;border-radius:50%;background:linear-gradient(180deg,#fff,rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.06);display:grid;place-items:center;font-weight:900;box-shadow:0 6px 18px rgba(203,189,255,.18)}
     .step h3{margin:0 0 .15rem;font-size:1.05rem}
 
-    /* ===== Our Stores (all visible; circular orbs) ===== */
+    /* ===== Our Stores (grid) ===== */
     .stores{padding:80px 0;position:relative}
     .stores .bg{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.6)),var(--veil-grad);filter:blur(30px) saturate(1.02);opacity:.85;mask:linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%);animation:drift 26s ease-in-out infinite alternate}
     .stores .sub{color:var(--muted)}
@@ -118,24 +139,43 @@
     .store{display:grid;justify-items:center;text-align:center;gap:10px;text-decoration:none;color:inherit;opacity:0;transform:translateY(10px);transition:500ms ease}
     .store.reveal-in{opacity:1;transform:none}
     .orb{position:relative;width:120px;height:120px;border-radius:999px;background:linear-gradient(180deg,#fff,rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.06);display:grid;place-items:center;box-shadow:0 12px 36px rgba(203,189,255,.25);overflow:hidden;transition:transform .18s ease}
-    .orb::before{content:"";position:absolute;inset:-30px;border-radius:inherit;background:var(--accent-grad);-webkit-mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 8px), #000 calc(50% - 7px));mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 8px), #000 calc(50% - 7px));filter:blur(.8px);opacity:.9}
+    .orb::before{content:"";position:absolute;inset:-8px;border-radius:inherit;background:var(--accent-grad);-webkit-mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 8px), #000 calc(50% - 7px));mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 8px), #000 calc(50% - 7px));filter:blur(.8px);opacity:.9}
     .store img{width:82%;height:82%;object-fit:contain}
     .store h3{margin:.2rem 0 0;font-size:1.02rem}
     .store small{color:var(--muted)}
     .store:hover .orb{transform:translateY(-2px)}
     .store:hover{transform:translateY(-2px)}
-    @media (max-width:1100px){.stores-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
-    @media (max-width:780px){.stores-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-    @media (max-width:560px){.stores-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.orb{width:110px;height:110px}}
 
     /* ===== Footer ===== */
     footer{padding:28px 0 36px}
     .foot{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
     .foot .logo{width:24px;height:24px;border-radius:7px}
 
+    /* ===== Responsiveness / Mobile polish ===== */
+    @media (max-width:1100px){.stores-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+    @media (max-width:900px){
+      .hero-grid{grid-template-columns:1fr}
+      .hero-art{min-height:360px}
+      .float-pills{right:auto;left:6%;top:8%}
+    }
+    @media (max-width:780px){
+      .stores-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+      .orb{width:110px;height:110px}
+    }
+    @media (max-width:560px){
+      .page::before{height:56vh;filter:blur(36px);opacity:.8}
+      .cta-row .btn{width:100%}
+      .hero{padding:28px 0 14px}
+      .hero-art{min-height:240px}
+      .float-pills{display:none} /* simplifica a área visual no mobile */
+      section{padding:48px 0}
+      .stores-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .orb{width:100px;height:100px}
+    }
+
     /* Motion pref */
     @media (prefers-reduced-motion: reduce){
-      .btn,.why-item,.step,.chip,.store{transition:none}
+      .btn,.why-item,.step,.chip,.store,.glass-pill{transition:none;animation:none}
       .page::before,.stores .bg,.ribbons::before,.ribbons::after{animation:none}
     }
   </style>
@@ -148,8 +188,8 @@
         <div class="brand-row">
           <span class="logo" aria-hidden="true"></span>
           <strong class="brand">As-Yourself</strong>
+          <span class="dev-pill">🚧 In development • Early access soon</span>
         </div>
-	    <span class="dev-pill">🚧 In development • Early access soon</span>
       </div>
     </header>
 
@@ -165,8 +205,16 @@
             <a class="btn ghost" href="#stores">Explore our stores</a>
           </div>
         </div>
-        <!-- integrated background ribbons -->
-        <div class="ribbons" aria-hidden="true"></div>
+
+        <!-- Artwork side: fills right on desktop, light on mobile -->
+        <div class="hero-art" aria-hidden="true">
+          <div class="ribbons"></div>
+          <div class="float-pills">
+            <div class="glass-pill">🧪 Dermatologist-tested</div>
+            <div class="glass-pill">🌿 Fragrance-free</div>
+            <div class="glass-pill">🐰 Cruelty-free</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -211,7 +259,7 @@
       </div>
     </section>
 
-    <!-- Our Stores (grid, all visible, circular) -->
+    <!-- Our Stores -->
     <section id="stores" class="stores">
       <div class="bg" aria-hidden="true"></div>
       <div class="container">
@@ -220,37 +268,37 @@
 
         <div class="stores-grid">
           <a class="store reveal" href="https://life-style.pt" target="_blank" rel="noopener">
-            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/3b.webp" width="200" height="200" alt="Life-Style logo"></span>
+            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/3b.webp" width="200" height="200" alt="Life-Style logo" loading="lazy"></span>
             <h3>Life-Style</h3>
             <small>Premium picks for home & wellness.</small>
           </a>
 
           <a class="store reveal" href="https://www.tcg-collectors.com" target="_blank" rel="noopener">
-            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/4w.webp" width="200" height="200" alt="TCG-Collectors logo"></span>
+            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/4w.webp" width="200" height="200" alt="TCG-Collectors logo" loading="lazy"></span>
             <h3>TCG-Collectors</h3>
             <small>For TCG collectors and enthusiasts.</small>
           </a>
 
           <a class="store reveal" href="https://2play4fun.com" target="_blank" rel="noopener">
-            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/7w.webp" width="200" height="200" alt="2Play4Fun logo"></span>
+            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/7w.webp" width="200" height="200" alt="2Play4Fun logo" loading="lazy"></span>
             <h3>2Play4Fun</h3>
             <small>Creative, educational toys for all ages.</small>
           </a>
 
           <a class="store reveal" href="https://casual-vibes.com" target="_blank" rel="noopener">
-            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/9b.webp" width="200" height="200" alt="Casual-Vibes logo"></span>
+            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/9b.webp" width="200" height="200" alt="Casual-Vibes logo" loading="lazy"></span>
             <h3>Casual-Vibes</h3>
             <small>Light, versatile daily wear.</small>
           </a>
 
           <a class="store reveal" href="https://world-decor.com" target="_blank" rel="noopener">
-            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/10b.webp" width="200" height="200" alt="World-Decor logo"></span>
+            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/10b.webp" width="200" height="200" alt="World-Decor logo" loading="lazy"></span>
             <h3>World-Decor</h3>
             <small>Decor with soul: wood, linen & ceramics.</small>
           </a>
 
           <a class="store reveal" href="https://www.innovatech-zone.com" target="_blank" rel="noopener">
-            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/11w.webp" width="200" height="200" alt="Innovatech Zone logo"></span>
+            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/11w.webp" width="200" height="200" alt="Innovatech Zone logo" loading="lazy"></span>
             <h3>Innovatech Zone</h3>
             <small>Smart technology & everyday solutions.</small>
           </a>
