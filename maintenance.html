@@ -51,17 +51,17 @@
     h2{font-size:clamp(1.4rem,2.6vw,2rem);margin:0 0 .8rem}
     p{margin:.5rem 0 0;color:var(--muted);font-size:1.05rem}
 
-    /* ===== Sculpted glow background ===== */
+    /* ===== Sculpted glow background (discreto e global) ===== */
     .page{position:relative;isolation:isolate}
     .page::before{
-      content:"";position:fixed;inset:-10% -10% auto -10%;top:-6vh;height:82vh;z-index:-2;
-      background:var(--veil-grad);filter:blur(50px);opacity:.9;
+      content:"";position:fixed;inset:-10% -10% auto -10%;top:-6vh;height:72vh;z-index:-2;
+      background:var(--veil-grad);filter:blur(50px);opacity:.85;
       animation:drift 22s ease-in-out infinite alternate;will-change:transform;
       mask:radial-gradient(120% 100% at 50% 0%, #000 60%, transparent 61%);
     }
     @keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(0,-2vh,0) scale(1.03)}}
 
-    /* ===== Header (logo + dev pill) ===== */
+    /* ===== Header (logo + dev pill à direita do nome) ===== */
     .site-head{padding:18px 0}
     .brand-row{display:flex;align-items:center;gap:10px}
     .logo{width:28px;height:28px;border-radius:9px;background:var(--accent-grad);box-shadow:0 0 1px rgba(0,0,0,.15),0 10px 24px rgba(203,189,255,.35)}
@@ -75,6 +75,8 @@
     /* ===== Hero ===== */
     .hero{padding:38px 0 24px}
     .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}
+
+    /* Esquerda (headline) */
     .eyebrow{display:inline-flex;gap:.5rem;align-items:center;padding:.42rem .7rem;border-radius:999px;background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.05);font-weight:800;color:#3a2f47}
     .lead{max-width:62ch}
     .cta-row{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1rem}
@@ -84,29 +86,14 @@
     .btn.ghost{color:#1b1622;border:1px solid rgba(0,0,0,.06);background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.6));backdrop-filter:blur(8px)}
     .btn.ghost:hover{transform:translateY(-1px)}
 
-    /* Right artwork: ribbons + floating glass pills */
-    .hero-art{position:relative;min-height:500px}
-    .ribbons{position:absolute;inset:0;border-radius:60px;overflow:hidden}
-    .ribbons::before,.ribbons::after{
-      content:"";position:absolute;inset:0;background:conic-gradient(from 210deg,rgba(255,191,228,.5),rgba(203,189,255,.5),rgba(255,214,179,.45),transparent 70%);
-      filter:blur(22px);opacity:.9;transform:rotate(-6deg);animation:breathe 14s ease-in-out infinite;mix-blend-mode:screen
-    }
-    .ribbons::after{inset:10% 0 0 10%;filter:blur(30px);opacity:.6;transform:rotate(6deg);animation-duration:18s}
-    @keyframes breathe{0%,100%{transform:translateY(0) rotate(var(--angle,-6deg))}50%{transform:translateY(-8px) rotate(var(--angle,-6deg))}}
-
-    .float-pills{position:absolute;right:2vw;top:6%;display:grid;gap:14px}
-    .glass-pill{
-      padding:.7rem 1rem;border-radius:999px;
-      background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.7));
-      border:1px solid rgba(0,0,0,.06);
-      box-shadow:0 10px 30px rgba(203,189,255,.25);
-      backdrop-filter:blur(8px) saturate(1.1);
-      font-weight:800;color:#392d4a;white-space:nowrap;opacity:.96;
-      animation:floatY 7s ease-in-out infinite;
-    }
-    .glass-pill:nth-child(2){animation-duration:8.5s;animation-delay:.2s}
-    .glass-pill:nth-child(3){animation-duration:9.5s;animation-delay:.4s}
-    @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+    /* Direita — zona clean (sem background), conteúdo importante */
+    .hero-facts{display:grid;gap:14px}
+    .fact-row{display:flex;align-items:center;gap:12px}
+    .fact-icon{width:36px;height:36px;border-radius:50%;background:linear-gradient(180deg,#fff,rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.06);display:grid;place-items:center;font-weight:900;box-shadow:0 6px 18px rgba(203,189,255,.18)}
+    .subnote{font-size:.95rem;color:var(--muted)}
+    .mini-list{display:grid;gap:8px;margin-top:6px}
+    .mini-list li{list-style:none;display:flex;gap:10px;align-items:flex-start}
+    .mini-list em{font-style:normal;color:#2a2235;font-weight:700}
 
     .sep{height:1px;background:linear-gradient(90deg,transparent,var(--hairline),transparent)}
 
@@ -133,13 +120,18 @@
 
     /* ===== Our Stores (grid) ===== */
     .stores{padding:80px 0;position:relative}
-    .stores .bg{position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(255,255,255,.7),rgba(255,255,255,.6)),var(--veil-grad);filter:blur(30px) saturate(1.02);opacity:.85;mask:linear-gradient(180deg,transparent 0,#000 8%,#000 92%,transparent 100%);animation:drift 26s ease-in-out infinite alternate}
     .stores .sub{color:var(--muted)}
     .stores-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:16px;margin-top:12px}
     .store{display:grid;justify-items:center;text-align:center;gap:10px;text-decoration:none;color:inherit;opacity:0;transform:translateY(10px);transition:500ms ease}
     .store.reveal-in{opacity:1;transform:none}
     .orb{position:relative;width:120px;height:120px;border-radius:999px;background:linear-gradient(180deg,#fff,rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.06);display:grid;place-items:center;box-shadow:0 12px 36px rgba(203,189,255,.25);overflow:hidden;transition:transform .18s ease}
-    .orb::before{content:"";position:absolute;inset:-8px;border-radius:inherit;background:var(--accent-grad);-webkit-mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 8px), #000 calc(50% - 7px));mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 8px), #000 calc(50% - 7px));filter:blur(.8px);opacity:.9}
+    /* pedido: inset -30 */
+    .orb::before{
+      content:"";position:absolute;inset:-30px;border-radius:inherit;background:var(--accent-grad);
+      -webkit-mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 30px), #000 calc(50% - 29px));
+              mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 30px), #000 calc(50% - 29px));
+      filter:blur(.8px);opacity:.9
+    }
     .store img{width:82%;height:82%;object-fit:contain}
     .store h3{margin:.2rem 0 0;font-size:1.02rem}
     .store small{color:var(--muted)}
@@ -155,8 +147,6 @@
     @media (max-width:1100px){.stores-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
     @media (max-width:900px){
       .hero-grid{grid-template-columns:1fr}
-      .hero-art{min-height:360px}
-      .float-pills{right:auto;left:6%;top:8%}
     }
     @media (max-width:780px){
       .stores-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -166,8 +156,6 @@
       .page::before{height:56vh;filter:blur(36px);opacity:.8}
       .cta-row .btn{width:100%}
       .hero{padding:28px 0 14px}
-      .hero-art{min-height:240px}
-      .float-pills{display:none} /* simplifica a área visual no mobile */
       section{padding:48px 0}
       .stores-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .orb{width:100px;height:100px}
@@ -175,8 +163,8 @@
 
     /* Motion pref */
     @media (prefers-reduced-motion: reduce){
-      .btn,.why-item,.step,.chip,.store,.glass-pill{transition:none;animation:none}
-      .page::before,.stores .bg,.ribbons::before,.ribbons::after{animation:none}
+      .btn,.why-item,.step,.chip,.store{transition:none;animation:none}
+      .page::before{animation:none}
     }
   </style>
 </head>
@@ -186,7 +174,7 @@
     <header class="site-head">
       <div class="container">
         <div class="brand-row">
-          <span class="logo" aria-hidden="true"></span>
+			<img src="https://www.as-yourself.com/img/logos/h_asyourself.webp" width="200" alt="As Yourself logo" loading="lazy">
           <strong class="brand">As-Yourself</strong>
           <span class="dev-pill">🚧 In development • Early access soon</span>
         </div>
@@ -196,6 +184,7 @@
     <!-- Hero -->
     <section class="hero">
       <div class="container hero-grid">
+        <!-- Esquerda: headline + CTAs -->
         <div>
           <span class="eyebrow">✨ Clean • Conscious • Glow</span>
           <h1>Skincare that feels gentle, looks radiant, and fits your life.</h1>
@@ -206,15 +195,34 @@
           </div>
         </div>
 
-        <!-- Artwork side: fills right on desktop, light on mobile -->
-        <div class="hero-art" aria-hidden="true">
-          <div class="ribbons"></div>
-          <div class="float-pills">
-            <div class="glass-pill">🧪 Dermatologist-tested</div>
-            <div class="glass-pill">🌿 Fragrance-free</div>
-            <div class="glass-pill">🐰 Cruelty-free</div>
+        <!-- Direita: zona clean (sem fundos decorativos) -->
+        <aside class="hero-facts" aria-label="Key information">
+          <div class="fact-row">
+            <div class="fact-icon">✓</div>
+            <div>
+              <strong>Dermatologist-tested, sensitive-skin friendly</strong>
+              <p class="subnote">Balanced actives, gentle textures — designed to respect your skin barrier.</p>
+            </div>
           </div>
-        </div>
+          <div class="fact-row">
+            <div class="fact-icon">🌿</div>
+            <div>
+              <strong>Fragrance-free, cruelty-free, vegan</strong>
+              <p class="subnote">Only what your skin needs — nothing extra.</p>
+            </div>
+          </div>
+          <div class="fact-row">
+            <div class="fact-icon">🇪🇺</div>
+            <div>
+              <strong>Made in the EU</strong>
+              <ul class="mini-list">
+                <li><span>•</span> <em>Niacinamide</em> to refine tone</li>
+                <li><span>•</span> <em>Hyaluronic Acid</em> for multi-depth hydration</li>
+                <li><span>•</span> <em>Ceramides</em> to support the barrier</li>
+              </ul>
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
 
@@ -261,44 +269,43 @@
 
     <!-- Our Stores -->
     <section id="stores" class="stores">
-      <div class="bg" aria-hidden="true"></div>
       <div class="container">
         <h2>Our Stores</h2>
         <p class="sub">Explore our group — skincare, lifestyle, tech and more.</p>
 
         <div class="stores-grid">
           <a class="store reveal" href="https://life-style.pt" target="_blank" rel="noopener">
-            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/3b.webp" width="200" height="200" alt="Life-Style logo" loading="lazy"></span>
+            <span class="orb"><img src="https://www.as-yourself.com/img/logos/3b.webp" width="200" height="200" alt="Life-Style logo" loading="lazy"></span>
             <h3>Life-Style</h3>
             <small>Premium picks for home & wellness.</small>
           </a>
 
-          <a class="store reveal" href="https://www.tcg-collectors.com" target="_blank" rel="noopener">
-            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/4w.webp" width="200" height="200" alt="TCG-Collectors logo" loading="lazy"></span>
+          <a class="store reveal" href="https://www.as-yourself.com" target="_blank" rel="noopener">
+            <span class="orb"><img src="https://www.as-yourself.com/img/logos/4w.webp" width="200" height="200" alt="TCG-Collectors logo" loading="lazy"></span>
             <h3>TCG-Collectors</h3>
             <small>For TCG collectors and enthusiasts.</small>
           </a>
 
           <a class="store reveal" href="https://2play4fun.com" target="_blank" rel="noopener">
-            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/7w.webp" width="200" height="200" alt="2Play4Fun logo" loading="lazy"></span>
+            <span class="orb"><img src="https://www.as-yourself.com/img/logos/7w.webp" width="200" height="200" alt="2Play4Fun logo" loading="lazy"></span>
             <h3>2Play4Fun</h3>
             <small>Creative, educational toys for all ages.</small>
           </a>
 
           <a class="store reveal" href="https://casual-vibes.com" target="_blank" rel="noopener">
-            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/9b.webp" width="200" height="200" alt="Casual-Vibes logo" loading="lazy"></span>
+            <span class="orb"><img src="https://www.as-yourself.com/img/logos/9b.webp" width="200" height="200" alt="Casual-Vibes logo" loading="lazy"></span>
             <h3>Casual-Vibes</h3>
             <small>Light, versatile daily wear.</small>
           </a>
 
           <a class="store reveal" href="https://world-decor.com" target="_blank" rel="noopener">
-            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/10b.webp" width="200" height="200" alt="World-Decor logo" loading="lazy"></span>
+            <span class="orb"><img src="https://www.as-yourself.com/img/logos/10b.webp" width="200" height="200" alt="World-Decor logo" loading="lazy"></span>
             <h3>World-Decor</h3>
             <small>Decor with soul: wood, linen & ceramics.</small>
           </a>
 
           <a class="store reveal" href="https://www.innovatech-zone.com" target="_blank" rel="noopener">
-            <span class="orb"><img src="https://www.tcg-collectors.com/img/logos/11w.webp" width="200" height="200" alt="Innovatech Zone logo" loading="lazy"></span>
+            <span class="orb"><img src="https://www.as-yourself.com/img/logos/11w.webp" width="200" height="200" alt="Innovatech Zone logo" loading="lazy"></span>
             <h3>Innovatech Zone</h3>
             <small>Smart technology & everyday solutions.</small>
           </a>
@@ -309,7 +316,7 @@
     <footer>
       <div class="container foot">
         <div class="brand-row">
-          <span class="logo" aria-hidden="true"></span>
+          <img src="https://www.as-yourself.com/img/logos/h_asyourself.webp" width="200" alt="As Yourself logo" loading="lazy">
           <strong>As-Yourself</strong>
         </div>
         <small>© <span id="year"></span> As-Yourself. All rights reserved.</small>
@@ -321,7 +328,7 @@
     // Year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Reveal on scroll
+    // Reveal on scroll (leve)
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!reduced) {
       const io = new IntersectionObserver((entries)=>{
