@@ -127,7 +127,7 @@
     .orb{position:relative;width:120px;height:120px;border-radius:999px;background:linear-gradient(180deg,#fff,rgba(255,255,255,.7));border:1px solid rgba(0,0,0,.06);display:grid;place-items:center;box-shadow:0 12px 36px rgba(203,189,255,.25);overflow:hidden;transition:transform .18s ease}
     /* pedido: inset -30 */
     .orb::before{
-      content:"";position:absolute;inset:-30px;border-radius:inherit;background:var(--accent-grad);
+      content:"";position:absolute;inset:-60px;border-radius:inherit;background:var(--accent-grad);
       -webkit-mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 30px), #000 calc(50% - 29px));
               mask:radial-gradient(circle at 50% 50%, transparent calc(50% - 30px), #000 calc(50% - 29px));
       filter:blur(.8px);opacity:.9
@@ -175,8 +175,7 @@
       <div class="container">
         <div class="brand-row">
 			<img src="https://www.as-yourself.com/img/logos/h_asyourself.webp" width="200" alt="As Yourself logo" loading="lazy">
-          <strong class="brand">As-Yourself</strong>
-          <span class="dev-pill">🚧 In development • Early access soon</span>
+          <span class="dev-pill">🚧 In development</span>
         </div>
       </div>
     </header>
@@ -317,9 +316,8 @@
       <div class="container foot">
         <div class="brand-row">
           <img src="https://www.as-yourself.com/img/logos/h_asyourself.webp" width="200" alt="As Yourself logo" loading="lazy">
-          <strong>As-Yourself</strong>
         </div>
-        <small>© <span id="year"></span> As-Yourself. All rights reserved.</small>
+        <small>© <span id="year"></span> All rights reserved.</small>
       </div>
     </footer>
   </div>
